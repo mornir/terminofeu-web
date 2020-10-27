@@ -1,10 +1,11 @@
 <template>
   <ul>
+    <p>{{ $i18n.locale }}</p>
     <p>{{ blocks }}</p>
     <li v-for="entry in entries" :key="entry._id">
-      <router-link :to="`/term/${entry._id}`">{{
+      <!--       <router-link :to="`/term/${entry._id}`">{{
         entry.content[$i18n.locale]?.preferredTerm
-      }}</router-link>
+      }}</router-link> -->
     </li>
   </ul>
 </template>

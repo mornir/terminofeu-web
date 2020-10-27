@@ -1,3 +1,6 @@
+import de from './locales/de.json'
+import fr from './locales/fr.json'
+
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
@@ -35,7 +38,25 @@ export default {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [],
+  modules: ['nuxt-i18n'],
+
+  i18n: {
+    locales: ['de', 'fr', 'it'],
+    defaultLocale: 'de',
+    vueI18n: {
+      fallbackLocale: 'de',
+      messages: {
+        de,
+        fr,
+      },
+    },
+  },
+
+  sanity: {
+    projectId: 'nipfx4rq',
+    dataset: 'production',
+    minimal: true,
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
