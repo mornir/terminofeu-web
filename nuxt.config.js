@@ -55,7 +55,7 @@ export default {
   sanity: {
     projectId: 'nipfx4rq',
     dataset: 'production',
-    minimal: true,
+    minimal: false,
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
