@@ -2,7 +2,7 @@
   <ul>
     <p>{{ $i18n.locale }}</p>
     <li v-for="term in terms" :key="term._id">
-      <router-link :to="`/term/${term.entry}`">{{ term.term }}</router-link>
+      <router-link :to="`/entry/${term.entry}`">{{ term.term }}</router-link>
     </li>
   </ul>
 </template>
