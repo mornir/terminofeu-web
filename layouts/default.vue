@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="px-16 mx-auto prose lg:prose-xl">
+  <div class="font-sans">
+    <div>
       <TheHeader />
       <Nuxt />
     </div>

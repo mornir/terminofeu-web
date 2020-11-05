@@ -35,13 +35,18 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxtjs/sanity',
+    '@nuxtjs/google-fonts',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: ['nuxt-i18n'],
 
   i18n: {
-    locales: ['de', 'fr', 'it'],
+    locales: [
+      { code: 'de', iso: 'de-CH', name: 'Deutsch' },
+      { code: 'fr', iso: 'fr-CH', name: 'Français' },
+      { code: 'it', iso: 'it-CH', name: 'Italieno' },
+    ],
     defaultLocale: 'de',
     vueI18n: {
       fallbackLocale: 'de',
@@ -57,7 +62,12 @@ export default {
     dataset: 'production',
     minimal: false,
   },
-
+  googleFonts: {
+    families: {
+      Nunito: [600, 700],
+    },
+    display: 'swap',
+  },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
 }

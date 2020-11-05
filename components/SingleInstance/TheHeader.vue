@@ -1,21 +1,13 @@
 <template>
-  <header>
-    <nav class="flex justify-between py-4">
-      <button
-        class="underline hover:text-orange-600"
-        :class="[$i18n.locale === 'de' ? 'text-orange-800' : 'text-black']"
-        @click="$i18n.locale = 'de'"
-      >
-        Deutsch
-      </button>
-      <button
-        class="underline hover:text-orange-600"
-        :class="[$i18n.locale === 'fr' ? 'text-orange-800' : 'text-black']"
-        @click="$i18n.locale = 'fr'"
-      >
-        Français
-      </button>
-      <button class="cursor-not-allowed">Italieno</button>
+  <!-- border-2 border-orange-700 -->
+  <header class="bg-orange-600">
+    <nav class="flex justify-around divide-x-2 divide-orange-700">
+      <LangLink
+        v-for="locale in $i18n.locales"
+        :key="locale.code"
+        :code="locale.code"
+        :name="locale.name"
+      />
     </nav>
   </header>
 </template>
