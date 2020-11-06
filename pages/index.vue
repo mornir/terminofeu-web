@@ -17,27 +17,40 @@
     <!-- border-l-8 border-orange-600-->
 
     <div class="mb-12">
-      <h2 class="relative mb-4 text-2xl font-bold">
+      <Heading2>
         {{ $t('search') }}
-      </h2>
+      </Heading2>
 
-      <p>Ab Januar 2021</p>
+      <p class="italic">Ab Januar 2021</p>
     </div>
 
-    <h2 class="relative text-2xl font-bold">{{ $t('index') }}</h2>
+    <Heading2>
+      {{ $t('index') }}
+    </Heading2>
 
     <ul>
-      <li v-for="term in terms" :key="term._id">
-        <router-link :to="`/entry/${term.entry}`" class="hover:text-primary">{{
-          term.term
-        }}</router-link>
+      <li v-for="term in terms" :key="term._id" class="mb-3">
+        <router-link :to="`/entry/${term.entry}`" class="hover:text-primary"
+          >{{ term.term }}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="inline-block h-6 text-orange-600 stroke-current stroke-2"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M14 5l7 7m0 0l-7 7m7-7H3"
+            /></svg
+        ></router-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-const query = /* groq */ `*[_type == "deTerm"]{
+const query = /* groq */ `*[_type == $type]{
   _id,
   term,
   "entry": *[_type=='entry' && references(^._id)][0]._id
@@ -53,20 +66,9 @@ export default {
   },
   created() {
     this.$sanity
-      .fetch(query)
+      .fetch(query, { type: this.$i18n.locale + 'Term' })
       .then((terms) => (this.terms = terms))
       .catch((err) => console.error('Oh noes: %s', err.message))
   },
 }
 </script>
-
-<style scoped>
-h2::before {
-  position: absolute;
-  left: -18px;
-  content: '';
-  height: 100%;
-  width: 10px;
-  background-color: #dd6b20;
-}
-</style>
