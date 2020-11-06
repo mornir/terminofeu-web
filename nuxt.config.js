@@ -1,3 +1,6 @@
+import de from './locales/de.json'
+import fr from './locales/fr.json'
+
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
@@ -31,11 +34,40 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/sanity',
+    '@nuxtjs/google-fonts',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [],
+  modules: ['nuxt-i18n'],
 
+  i18n: {
+    locales: [
+      { code: 'de', iso: 'de-CH', name: 'Deutsch' },
+      { code: 'fr', iso: 'fr-CH', name: 'Français' },
+      { code: 'it', iso: 'it-CH', name: 'Italieno' },
+    ],
+    defaultLocale: 'de',
+    vueI18n: {
+      fallbackLocale: 'de',
+      messages: {
+        de,
+        fr,
+      },
+    },
+  },
+
+  sanity: {
+    projectId: 'nipfx4rq',
+    dataset: 'production',
+    minimal: false,
+  },
+  googleFonts: {
+    families: {
+      Nunito: [600, 700],
+    },
+    display: 'swap',
+  },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
 }

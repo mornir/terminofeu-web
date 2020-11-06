@@ -18,3 +18,8 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+## Design
+
+- [Figma Prototype](https://www.figma.com/file/w1648gCgt19nSnNHfwnI0g/terminofeu)
+- [Figma Interactive Demo](https://www.figma.com/proto/w1648gCgt19nSnNHfwnI0g/terminofeu?node-id=12%3A5&scaling=scale-down)
