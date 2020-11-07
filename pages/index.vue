@@ -30,19 +30,8 @@
       <ul>
         <li v-for="term in terms" :key="term._id" class="mb-3">
           <router-link :to="`/entry/${term.entry}`" class="hover:text-primary"
-            >{{ term.term }}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              class="inline-block h-6 text-orange-600 stroke-current stroke-2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
-              /></svg
-          ></router-link>
+            >{{ term.term }} <ArrowIcon
+          /></router-link>
         </li>
       </ul>
     </section>

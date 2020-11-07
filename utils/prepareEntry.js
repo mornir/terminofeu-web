@@ -3,9 +3,9 @@ function prepareEntry(data) {
     preferredTerm: {},
     alternativeTerms: [],
     definition: [],
+    relatedEntries: [],
   }
   entry.definition = data.definition
-  entry.relatedEntries = data.relatedEntries
 
   if (!data.terms?.length > 0) {
     return entry
@@ -14,6 +14,11 @@ function prepareEntry(data) {
   entry.preferredTerm = data.terms[0]
   entry.alternativeTerms = data.terms.slice(1)
 
+  if (!data.relatedEntries?.length > 0) {
+    return entry
+  }
+
+  entry.relatedEntries = data.relatedEntries
   return entry
 }
 

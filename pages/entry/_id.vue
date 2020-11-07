@@ -6,7 +6,7 @@
         <Heading1 v-if="entry.preferredTerm.term">
           {{ entry.preferredTerm.term }}
         </Heading1>
-        <ZoomIcon class="mt-1 ml-2" />
+        <ZoomLinkIcon class="mt-1 ml-2" />
       </div>
       <SanityContent v-if="entry.definition" :blocks="entry.definition" />
 
@@ -36,9 +36,9 @@
             :key="fiche._id"
             class="font-semibold"
           >
-            <nuxt-link v-if="fiche.term" :to="`/entry/${fiche._id}/`">{{
-              fiche.term.term
-            }}</nuxt-link>
+            <nuxt-link v-if="fiche.term" :to="`/entry/${fiche._id}/`"
+              >{{ fiche.term.term }} <ArrowIcon
+            /></nuxt-link>
           </li>
         </ul>
       </section>
@@ -72,7 +72,6 @@ export default {
           id: this.$route.params.id,
         }
       )
-
       this.entry = prepareEntry(results)
     } catch (err) {
       console.error('Oh noes: %s', err.message)
