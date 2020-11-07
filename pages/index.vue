@@ -34,7 +34,7 @@
             class="font-semibold hover:text-orange-600"
             >{{ term.term }}
             <span v-if="term.abbreviation">({{ term.abbreviation }})</span
-            ><ArrowIcon
+            ><ArrowRight
           /></router-link>
         </li>
       </ul>
