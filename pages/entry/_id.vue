@@ -12,7 +12,12 @@
         </Heading1>
         <ZoomLinkIcon class="mt-1 ml-2" />
       </div>
-      <SanityContent v-if="entry.definition" :blocks="entry.definition" />
+
+      <SanityContent
+        v-if="entry.definition"
+        :blocks="entry.definition"
+        class="-mt-2"
+      />
 
       <section v-if="entry.preferredTerm.abbreviation" class="mt-8">
         <Heading2>Abkürzung</Heading2>
