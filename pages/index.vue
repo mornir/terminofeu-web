@@ -1,6 +1,6 @@
 <template>
   <div class="px-8 py-6">
-    <div class="mt-8 mb-12">
+    <section class="mt-8 mb-12">
       <h1 class="text-3xl font-bold text-center">terminofeu</h1>
       <svg
         viewBox="0 0 159 16"
@@ -13,33 +13,41 @@
           fill="#DD6B20"
         />
       </svg>
-    </div>
-    <!-- border-l-8 border-orange-600-->
+    </section>
 
-    <div class="mb-12">
-      <h2 class="relative mb-4 text-2xl font-bold">
+    <section class="mb-12">
+      <Heading1>
         {{ $t('search') }}
-      </h2>
+      </Heading1>
 
-      <p>Ab Januar 2021</p>
-    </div>
+      <p class="italic">Ab Januar 2021</p>
+    </section>
+    <section>
+      <Heading1>
+        {{ $t('index') }}
+      </Heading1>
 
-    <h2 class="relative text-2xl font-bold">{{ $t('index') }}</h2>
-
-    <ul>
-      <li v-for="term in terms" :key="term._id">
-        <router-link :to="`/entry/${term.entry}`" class="hover:text-primary">{{
-          term.term
-        }}</router-link>
-      </li>
-    </ul>
+      <ul>
+        <li v-for="term in terms" :key="term._id" class="mb-3">
+          <router-link
+            :to="`/entry/${term.entry}`"
+            class="font-semibold hover:text-orange-600"
+            >{{ term.term }}
+            <span v-if="term.abbreviation">({{ term.abbreviation }})</span
+            ><ArrowIcon
+          /></router-link>
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 
 <script>
-const query = /* groq */ `*[_type == "deTerm"]{
+const query = /* groq */ `*[_type == $type]|order(term asc)
+{
   _id,
   term,
+  abbreviation,
   "entry": *[_type=='entry' && references(^._id)][0]._id
 }
 `
@@ -53,20 +61,9 @@ export default {
   },
   created() {
     this.$sanity
-      .fetch(query)
+      .fetch(query, { type: this.$i18n.locale + 'Term' })
       .then((terms) => (this.terms = terms))
       .catch((err) => console.error('Oh noes: %s', err.message))
   },
 }
 </script>
-
-<style scoped>
-h2::before {
-  position: absolute;
-  left: -18px;
-  content: '';
-  height: 100%;
-  width: 10px;
-  background-color: #dd6b20;
-}
-</style>

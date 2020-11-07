@@ -6,8 +6,8 @@
         v-for="locale in $i18n.locales"
         :key="locale.code"
         :code="locale.code"
-        :name="locale.name"
-      />
+        >{{ locale.name }}</LangLink
+      >
     </nav>
   </header>
 </template>
