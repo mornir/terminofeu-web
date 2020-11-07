@@ -5,8 +5,12 @@
   </div>
 </template>
 
-<style>
+<style lang="postcss">
 body {
   font-size: 18px;
+}
+
+.underline {
+  text-decoration-color: #dd6b20 !important;
 }
 </style>

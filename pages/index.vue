@@ -29,8 +29,12 @@
 
       <ul>
         <li v-for="term in terms" :key="term._id" class="mb-3">
-          <router-link :to="`/entry/${term.entry}`" class="hover:text-primary"
-            >{{ term.term }} <ArrowIcon
+          <router-link
+            :to="`/entry/${term.entry}`"
+            class="font-semibold hover:text-orange-600"
+            >{{ term.term }}
+            <span v-if="term.abbreviation">({{ term.abbreviation }})</span
+            ><ArrowIcon
           /></router-link>
         </li>
       </ul>
@@ -39,9 +43,11 @@
 </template>
 
 <script>
-const query = /* groq */ `*[_type == $type]{
+const query = /* groq */ `*[_type == $type]|order(term asc)
+{
   _id,
   term,
+  abbreviation,
   "entry": *[_type=='entry' && references(^._id)][0]._id
 }
 `

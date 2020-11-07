@@ -1,7 +1,8 @@
 <template>
   <div>
+    <nuxt-link to="/" class="underline">Zum Verzeichnis</nuxt-link>
     <div v-if="$fetchState.pending">Loading</div>
-    <article v-else>
+    <article v-else class="mt-8">
       <div class="flex">
         <Heading1 v-if="entry.preferredTerm.term">
           {{ entry.preferredTerm.term }}
