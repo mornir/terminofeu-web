@@ -10,13 +10,20 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'terminofeu-web',
+    title: 'terminofeu',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Fire Safety Terminology',
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: 'black' },
+    ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
@@ -45,7 +52,7 @@ export default {
     locales: [
       { code: 'de', iso: 'de-CH', name: 'Deutsch' },
       { code: 'fr', iso: 'fr-CH', name: 'Français' },
-      { code: 'it', iso: 'it-CH', name: 'Italieno' },
+      { code: 'it', iso: 'it-CH', name: 'Italiano' },
     ],
     defaultLocale: 'de',
     vueI18n: {
