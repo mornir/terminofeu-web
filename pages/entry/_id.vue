@@ -2,26 +2,44 @@
   <div>
     <div v-if="$fetchState.pending">Loading</div>
     <article v-else>
-      <Heading1 v-if="entry.terms && entry.terms.length > 0">
-        {{ entry.terms[0].term }} (BS)</Heading1
+      <Heading1 v-if="entry.preferredTerm.term">
+        {{ entry.preferredTerm.term }}</Heading1
       >
+
       <SanityContent v-if="entry.definition" :blocks="entry.definition" />
 
-      <!--       <div>
-        <h2>Alternative Begriffe</h2>
-        <ul v-for="term in lang.terms" :key="term._id">
-          <li>{{ term.term }}</li>
+      <section v-if="entry.preferredTerm.abbreviation" class="mt-8">
+        <Heading2>Abkürzung</Heading2>
+        <span class="font-bold">{{ entry.preferredTerm.abbreviation }}</span>
+      </section>
+
+      <section v-if="entry.alternativeTerms.length > 0" class="mt-8">
+        <Heading2>Alternative Begriffe</Heading2>
+        <ul>
+          <li
+            v-for="term in entry.alternativeTerms"
+            :key="term._id"
+            class="font-semibold"
+          >
+            {{ term.term }}
+          </li>
         </ul>
-      </div> -->
+      </section>
+
+      <section class="mt-8">
+        <Heading2>Verwandte Einträge</Heading2>
+      </section>
     </article>
   </div>
 </template>
 
 <script>
+import { prepareEntry } from '@/utils/prepareEntry'
+
 const queryBuilder = (code) => {
   return `*[_type == "entry" && _id == $id][0]{
     "definition": content.${code}.definition,
-    "terms": content.${code}.terms[]->
+    "terms": content.${code}.terms[]->,
 }`
 }
 
@@ -29,9 +47,14 @@ export default {
   name: 'Entry',
   async fetch() {
     try {
-      this.entry = await this.$sanity.fetch(queryBuilder(this.$i18n.locale), {
-        id: this.$route.params.id,
-      })
+      const results = await this.$sanity.fetch(
+        queryBuilder(this.$i18n.locale),
+        {
+          id: this.$route.params.id,
+        }
+      )
+
+      this.entry = prepareEntry(results)
     } catch (err) {
       console.error('Oh noes: %s', err.message)
     }
@@ -41,5 +64,6 @@ export default {
       entry: {},
     }
   },
+  fetchOnServer: false,
 }
 </script>

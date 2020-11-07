@@ -64,7 +64,7 @@ export default {
   },
   googleFonts: {
     families: {
-      Nunito: [600, 700],
+      Nunito: [400, 600, 700],
     },
     display: 'swap',
   },
