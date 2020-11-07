@@ -2,35 +2,34 @@
   <div>
     <div v-if="$fetchState.pending">Loading</div>
     <article v-else>
-      <h1 v-if="lang.preferredTerm">
-        {{ lang.preferredTerm.term }}
-      </h1>
-      <SanityContent :blocks="lang.definition" />
+      <Heading1 v-if="entry.terms && entry.terms.length > 0">
+        {{ entry.terms[0].term }} (BS)</Heading1
+      >
+      <SanityContent v-if="entry.definition" :blocks="entry.definition" />
 
-      <div>
+      <!--       <div>
         <h2>Alternative Begriffe</h2>
         <ul v-for="term in lang.terms" :key="term._id">
           <li>{{ term.term }}</li>
         </ul>
-      </div>
+      </div> -->
     </article>
   </div>
 </template>
 
 <script>
-const query = /* groq */ `*[_type == "entry" && _id == $id][0]{
-  "de": {
-    "preferredTerm": content.de.preferredTerm->,
-    "definition": content.de.definition,
-    "terms": content.de.alternativeTerms[]->
-  }
+const queryBuilder = (code) => {
+  return `*[_type == "entry" && _id == $id][0]{
+    "definition": content.${code}.definition,
+    "terms": content.${code}.terms[]->
 }`
+}
 
 export default {
   name: 'Entry',
   async fetch() {
     try {
-      this.entry = await this.$sanity.fetch(query, {
+      this.entry = await this.$sanity.fetch(queryBuilder(this.$i18n.locale), {
         id: this.$route.params.id,
       })
     } catch (err) {
@@ -41,11 +40,6 @@ export default {
     return {
       entry: {},
     }
-  },
-  computed: {
-    lang() {
-      return this.entry[this.$i18n.locale]
-    },
   },
 }
 </script>

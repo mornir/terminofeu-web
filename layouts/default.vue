@@ -1,9 +1,7 @@
 <template>
   <div class="font-sans">
-    <div>
-      <TheHeader />
-      <Nuxt />
-    </div>
+    <TheHeader />
+    <Nuxt class="px-8 py-6" />
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="px-8 py-6">
-    <div class="mt-8 mb-12">
+    <section class="mt-8 mb-12">
       <h1 class="text-3xl font-bold text-center">terminofeu</h1>
       <svg
         viewBox="0 0 159 16"
@@ -13,39 +13,40 @@
           fill="#DD6B20"
         />
       </svg>
-    </div>
+    </section>
     <!-- border-l-8 border-orange-600-->
 
-    <div class="mb-12">
-      <Heading2>
+    <section class="mb-12">
+      <Heading1>
         {{ $t('search') }}
-      </Heading2>
+      </Heading1>
 
       <p class="italic">Ab Januar 2021</p>
-    </div>
+    </section>
+    <section>
+      <Heading1>
+        {{ $t('index') }}
+      </Heading1>
 
-    <Heading2>
-      {{ $t('index') }}
-    </Heading2>
-
-    <ul>
-      <li v-for="term in terms" :key="term._id" class="mb-3">
-        <router-link :to="`/entry/${term.entry}`" class="hover:text-primary"
-          >{{ term.term }}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            class="inline-block h-6 text-orange-600 stroke-current stroke-2"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M14 5l7 7m0 0l-7 7m7-7H3"
-            /></svg
-        ></router-link>
-      </li>
-    </ul>
+      <ul>
+        <li v-for="term in terms" :key="term._id" class="mb-3">
+          <router-link :to="`/entry/${term.entry}`" class="hover:text-primary"
+            >{{ term.term }}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="inline-block h-6 text-orange-600 stroke-current stroke-2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              /></svg
+          ></router-link>
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 

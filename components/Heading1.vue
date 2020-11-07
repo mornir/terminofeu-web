@@ -1,9 +1,9 @@
 <template functional>
-  <h2 class="relative mb-4 text-2xl font-bold"><slot /></h2>
+  <h1 class="relative mb-4 text-2xl font-bold"><slot /></h1>
 </template>
 
 <style scoped>
-h2::before {
+h1::before {
   position: absolute;
   left: -18px;
   content: '';
