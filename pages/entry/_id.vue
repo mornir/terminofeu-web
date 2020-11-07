@@ -2,10 +2,12 @@
   <div>
     <div v-if="$fetchState.pending">Loading</div>
     <article v-else>
-      <Heading1 v-if="entry.preferredTerm.term">
-        {{ entry.preferredTerm.term }}</Heading1
-      >
-
+      <div class="flex">
+        <Heading1 v-if="entry.preferredTerm.term">
+          {{ entry.preferredTerm.term }}
+        </Heading1>
+        <ZoomIcon class="mt-1 ml-2" />
+      </div>
       <SanityContent v-if="entry.definition" :blocks="entry.definition" />
 
       <section v-if="entry.preferredTerm.abbreviation" class="mt-8">
@@ -26,8 +28,19 @@
         </ul>
       </section>
 
-      <section class="mt-8">
+      <section v-if="entry.relatedEntries.length > 0" class="mt-8">
         <Heading2>Verwandte Einträge</Heading2>
+        <ul>
+          <li
+            v-for="fiche in entry.relatedEntries"
+            :key="fiche._id"
+            class="font-semibold"
+          >
+            <nuxt-link v-if="fiche.term" :to="`/entry/${fiche._id}/`">{{
+              fiche.term.term
+            }}</nuxt-link>
+          </li>
+        </ul>
       </section>
     </article>
   </div>
@@ -40,11 +53,17 @@ const queryBuilder = (code) => {
   return `*[_type == "entry" && _id == $id][0]{
     "definition": content.${code}.definition,
     "terms": content.${code}.terms[]->,
+     relatedEntries[]-> {
+      _id,
+      "term": content.${code}.terms[0]-> {
+        term
+      }
+    }
 }`
 }
 
 export default {
-  name: 'Entry',
+  name: 'EntryDetails',
   async fetch() {
     try {
       const results = await this.$sanity.fetch(
@@ -64,6 +83,5 @@ export default {
       entry: {},
     }
   },
-  fetchOnServer: false,
 }
 </script>

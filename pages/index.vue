@@ -14,7 +14,6 @@
         />
       </svg>
     </section>
-    <!-- border-l-8 border-orange-600-->
 
     <section class="mb-12">
       <Heading1>

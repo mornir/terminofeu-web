@@ -5,6 +5,7 @@ function prepareEntry(data) {
     definition: [],
   }
   entry.definition = data.definition
+  entry.relatedEntries = data.relatedEntries
 
   if (!data.terms?.length > 0) {
     return entry
