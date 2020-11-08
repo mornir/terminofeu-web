@@ -10,7 +10,7 @@
         <Heading1 v-if="entry.preferredTerm.term">
           {{ entry.preferredTerm.term }}
         </Heading1>
-        <ZoomLinkIcon class="mt-1 ml-2" />
+        <ZoomLink :id="entry.preferredTerm._id" class="mt-1 ml-2" />
       </div>
 
       <SanityContent
