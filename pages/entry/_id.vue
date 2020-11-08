@@ -1,15 +1,23 @@
 <template>
   <div>
-    <nuxt-link to="/" class="underline">Zum Verzeichnis</nuxt-link>
+    <nuxt-link to="/" class="-ml-5 text-base font-semibold">
+      <ArrowLeft />
+      Zum Verzeichnis</nuxt-link
+    >
     <div v-if="$fetchState.pending">Loading</div>
     <article v-else class="mt-8">
       <div class="flex">
         <Heading1 v-if="entry.preferredTerm.term">
           {{ entry.preferredTerm.term }}
         </Heading1>
-        <ZoomLinkIcon class="mt-1 ml-2" />
+        <ZoomLink :id="entry.preferredTerm._id" class="mt-1 ml-2" />
       </div>
-      <SanityContent v-if="entry.definition" :blocks="entry.definition" />
+
+      <SanityContent
+        v-if="entry.definition"
+        :blocks="entry.definition"
+        class="-mt-2"
+      />
 
       <section v-if="entry.preferredTerm.abbreviation" class="mt-8">
         <Heading2>Abkürzung</Heading2>
@@ -38,7 +46,7 @@
             class="font-semibold"
           >
             <nuxt-link v-if="fiche.term" :to="`/entry/${fiche._id}/`"
-              >{{ fiche.term.term }} <ArrowIcon
+              >{{ fiche.term.term }} <ArrowRight
             /></nuxt-link>
           </li>
         </ul>
