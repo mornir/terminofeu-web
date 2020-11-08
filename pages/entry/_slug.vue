@@ -10,7 +10,7 @@
         <Heading1 v-if="entry.preferredTerm.term">
           {{ entry.preferredTerm.term }}
         </Heading1>
-        <ZoomLinkIcon class="mt-1 ml-2" />
+        <!--   <ZoomLinkIcon class="mt-1 ml-2" /> -->
       </div>
 
       <SanityContent
@@ -59,7 +59,7 @@
 import { prepareEntry } from '@/utils/prepareEntry'
 
 const queryBuilder = (code) => {
-  return `*[_type == "entry" && _id == $id][0]{
+  return `*[_type == "entry" && content.${code}.slug.current == $slug][0]{
     "definition": content.${code}.definition,
     "terms": content.${code}.terms[]->,
      relatedEntries[]-> {
@@ -72,13 +72,20 @@ const queryBuilder = (code) => {
 }
 
 export default {
+  nuxtI18n: {
+    paths: {
+      de: '/eintrag/:slug/',
+      fr: '/fiche/:slug/',
+      it: '/ficho/:slug/',
+    },
+  },
   name: 'EntryDetails',
   async fetch() {
     try {
       const results = await this.$sanity.fetch(
         queryBuilder(this.$i18n.locale),
         {
-          id: this.$route.params.id,
+          slug: this.$route.params.slug,
         }
       )
       this.entry = prepareEntry(results)

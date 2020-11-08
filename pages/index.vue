@@ -30,12 +30,19 @@
       <ul>
         <li v-for="term in terms" :key="term._id" class="mb-3">
           <router-link
-            :to="`/entry/${term.entry}`"
+            v-if="term.entry"
+            :to="
+              localePath({
+                name: 'entry-slug',
+                params: { slug: term.entry.slug },
+              })
+            "
             class="font-semibold hover:text-orange-600"
             >{{ term.term }}
             <span v-if="term.abbreviation">({{ term.abbreviation }})</span
             ><ArrowRight
           /></router-link>
+          <span v-else>{{ term.term }}</span>
         </li>
       </ul>
     </section>
@@ -46,9 +53,14 @@
 const query = /* groq */ `*[_type == $type]|order(term asc)
 {
   _id,
+  "slug": slug.current,
   term,
   abbreviation,
-  "entry": *[_type=='entry' && references(^._id)][0]._id
+  "entry": *[_type=='entry' && references(^._id)][0] {
+    ...,
+    _id,
+    "slug": content.de.slug.current
+  }
 }
 `
 

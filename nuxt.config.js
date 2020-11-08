@@ -1,9 +1,26 @@
+import { createClient } from '@nuxtjs/sanity'
+
 import de from './locales/de.json'
 import fr from './locales/fr.json'
 
+const sanityClient = createClient({
+  projectId: 'nipfx4rq',
+  dataset: 'production',
+  useCdn: false,
+})
+
+const generate = /* groq */ `
+  {
+    "entries": *[_type == "entry"],
+    "deTerms": *[_type == "deTerm"],
+    "frTerms": *[_type == "frTerm"],
+    "itTerms": *[_type == "itTerm"]
+  }
+`
+
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
-  ssr: false,
+  ssr: true,
 
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
@@ -61,6 +78,42 @@ export default {
         de,
         fr,
       },
+    },
+  },
+
+  router: {
+    trailingSlash: true,
+  },
+
+  generate: {
+    // For Netlify 404 page
+    fallback: true,
+    crawler: false,
+    routes: () => {
+      return sanityClient
+        .fetch(generate)
+        .then(({ entries, employees, students }) => {
+          return [
+            ...entries.map((page) => {
+              const route =
+                page.slug.current === '/' ? '/' : `/${page.slug.current}/`
+              return { route, payload: page }
+            }),
+            /*         ...employees.map((employee) => {
+              return {
+                route: `/team/${employee.slug.current}/`,
+                payload: employee,
+              }
+            }),
+            ...students.map((student) => {
+              return {
+                route: `/schüler/${student.slug.current}/`,
+                payload: student,
+              }
+            }), */
+          ]
+        })
+        .catch((e) => console.error(e))
     },
   },
 
