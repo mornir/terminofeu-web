@@ -30,12 +30,14 @@
       <ul>
         <li v-for="term in terms" :key="term._id" class="mb-3">
           <router-link
+            v-if="term.entry"
             :to="`/entry/${term.entry}`"
             class="font-semibold hover:text-orange-600"
             >{{ term.term }}
             <span v-if="term.abbreviation">({{ term.abbreviation }})</span
             ><ArrowRight
           /></router-link>
+          <span v-else>{{ term.term }}</span>
         </li>
       </ul>
     </section>
