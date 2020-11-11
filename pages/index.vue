@@ -31,7 +31,7 @@
         <li v-for="record in records" :key="record._id" class="mb-3">
           <router-link
             v-if="record.entry"
-            :to="`/entry/${record.entry}`"
+            :to="localePath({ name: 'entry-id', params: { id: record.entry } })"
             class="font-semibold hover:text-orange-600"
             >{{ record.term.designation }}
             <span v-if="record.abbreviation"
