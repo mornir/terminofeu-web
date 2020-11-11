@@ -1,6 +1,6 @@
 <template>
   <div class="font-sans">
-    <TheHeader />
+    <TheHeader v-if="!$route.name.includes('term')" />
     <Nuxt class="px-8 py-6" />
   </div>
 </template>
