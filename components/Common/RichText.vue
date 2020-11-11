@@ -4,7 +4,7 @@
 
 <script>
 import externalLink from '@/components/serializers/ExternalLink'
-import internalLink from '@/components/serializers/InternalLink'
+import linkToEntry from '@/components/serializers/LinkToEntry'
 
 export default {
   props: {
@@ -19,7 +19,7 @@ export default {
       serializers: {
         marks: {
           externalLink,
-          internalLink,
+          linkToEntry,
         },
       },
     }
