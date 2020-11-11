@@ -58,38 +58,59 @@
 <script>
 import { prepareEntry } from '@/utils/prepareEntry'
 
-const queryBuilder = (code) => {
-  return `*[_type == "entry" && _id == $id][0]{
-    "definition": content.${code}.definition,
-    "terms": content.${code}.terms[]->,
-     relatedEntries[]-> {
-      _id,
-      "term": content.${code}.terms[0]-> {
-        term
+const query = /* groq */ `*[_type == "entry" && _id == $id][0]{
+    "de": {
+      "definition": content.de.definition,
+      "terms": content.de.terms[]->,
+      relatedEntries[]-> {
+        _id,
+        "term": content.de.terms[0]-> {
+          term
+        }
+      }
+    },
+    "fr": {
+      "definition": content.fr.definition,
+      "terms": content.fr.terms[]->,
+      relatedEntries[]-> {
+        _id,
+        "term": content.fr.terms[0]-> {
+          term
+        }
+      }
+    },
+    "it": {
+      "definition": content.it.definition,
+      "terms": content.it.terms[]->,
+      relatedEntries[]-> {
+        _id,
+        "term": content.it.terms[0]-> {
+          term
+        }
       }
     }
 }`
-}
 
 export default {
   name: 'EntryDetails',
   async fetch() {
     try {
-      const results = await this.$sanity.fetch(
-        queryBuilder(this.$i18n.locale),
-        {
-          id: this.$route.params.id,
-        }
-      )
-      this.entry = prepareEntry(results)
+      this.results = await this.$sanity.fetch(query, {
+        id: this.$route.params.id,
+      })
     } catch (err) {
       console.error('Oh noes: %s', err.message)
     }
   },
   data() {
     return {
-      entry: {},
+      results: {},
     }
+  },
+  computed: {
+    entry() {
+      return prepareEntry(this.results[this.$i18n.locale])
+    },
   },
 }
 </script>

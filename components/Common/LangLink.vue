@@ -1,11 +1,11 @@
 <template>
-  <nuxt-link
+  <button
     class="flex-1 py-2 text-base font-semibold tracking-wide text-center text-white focus:outline-none"
     :class="[$i18n.locale === code ? 'bg-orange-700' : 'text-black']"
-    :to="switchLocalePath(code)"
+    @click="switchLang"
   >
     <slot />
-  </nuxt-link>
+  </button>
 </template>
 
 <script>
