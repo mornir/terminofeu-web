@@ -19,7 +19,7 @@
         <p v-else>Keine Quelle</p>
       </div>
 
-      <div v-if="term.source" class="mt-8">
+      <div v-if="term.notice" class="mt-8">
         <Heading2>Anmerkungen</Heading2>
         <SanityContent :blocks="term.notice" />
       </div>
