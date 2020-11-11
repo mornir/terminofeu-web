@@ -28,16 +28,17 @@
       </Heading1>
 
       <ul>
-        <li v-for="term in terms" :key="term._id" class="mb-3">
+        <li v-for="record in records" :key="record._id" class="mb-3">
           <router-link
-            v-if="term.entry"
-            :to="`/entry/${term.entry}`"
+            v-if="record.entry"
+            :to="`/entry/${record.entry}`"
             class="font-semibold hover:text-orange-600"
-            >{{ term.term }}
-            <span v-if="term.abbreviation">({{ term.abbreviation }})</span
+            >{{ record.term.designation }}
+            <span v-if="record.abbreviation"
+              >({{ record.abbreviation.designation }})</span
             ><ArrowRight
           /></router-link>
-          <span v-else>{{ term.term }}</span>
+          <span v-else>{{ record.term.designation }}</span>
         </li>
       </ul>
     </section>
@@ -58,13 +59,13 @@ export default {
   name: 'Home',
   data() {
     return {
-      terms: [],
+      records: [],
     }
   },
   created() {
     this.$sanity
       .fetch(query, { type: this.$i18n.locale + 'Term' })
-      .then((terms) => (this.terms = terms))
+      .then((records) => (this.records = records))
       .catch((err) => console.error('Oh noes: %s', err.message))
   },
 }

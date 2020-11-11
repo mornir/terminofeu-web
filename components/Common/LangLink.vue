@@ -1,11 +1,11 @@
 <template>
-  <nuxt-link
+  <button
     class="flex-1 py-2 text-base font-semibold tracking-wide text-center text-white focus:outline-none"
     :class="[$i18n.locale === code ? 'bg-orange-700' : 'text-black']"
-    :to="switchLocalePath(code)"
+    @click="switchLang"
   >
     <slot />
-  </nuxt-link>
+  </button>
 </template>
 
 <script>
@@ -19,7 +19,7 @@ export default {
   methods: {
     switchLang() {
       // Prevent API calls within term & entry pages
-      if (this.$route.name.match(/term|entry/g)) {
+      if (this.$route.name.includes('entry')) {
         // https://github.com/nuxt-community/i18n-module/issues/68#issuecomment-475792915
         this.$i18n.locale = this.code
         window.history.replaceState('', '', this.switchLocalePath(this.code))

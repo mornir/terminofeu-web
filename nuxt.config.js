@@ -49,6 +49,7 @@ export default {
   modules: ['nuxt-i18n'],
 
   i18n: {
+    strategy: 'prefix',
     locales: [
       { code: 'de', iso: 'de-CH', name: 'Deutsch' },
       { code: 'fr', iso: 'fr-CH', name: 'Français' },

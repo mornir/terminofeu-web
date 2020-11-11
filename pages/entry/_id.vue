@@ -8,12 +8,12 @@
     <article v-else class="mt-8">
       <div class="flex">
         <Heading1 v-if="entry.preferredTerm.term">
-          {{ entry.preferredTerm.term }}
+          {{ entry.preferredTerm.term.designation }}
         </Heading1>
         <ZoomLink :id="entry.preferredTerm._id" class="mt-1 ml-2" />
       </div>
 
-      <SanityContent
+      <RichText
         v-if="entry.definition"
         :blocks="entry.definition"
         class="-mt-2"
@@ -28,11 +28,11 @@
         <Heading2>Alternative Begriffe</Heading2>
         <ul>
           <li
-            v-for="term in entry.alternativeTerms"
-            :key="term._id"
+            v-for="alternative in entry.alternativeTerms"
+            :key="alternative._id"
             class="font-semibold"
           >
-            {{ term.term }}
+            {{ alternative.term }}
           </li>
         </ul>
       </section>
@@ -45,8 +45,8 @@
             :key="fiche._id"
             class="font-semibold"
           >
-            <nuxt-link v-if="fiche.term" :to="`/entry/${fiche._id}/`"
-              >{{ fiche.term.term }} <ArrowRight
+            <nuxt-link v-if="fiche.relatedEntry" :to="`/entry/${fiche._id}/`"
+              >{{ fiche.relatedEntry.term.designation }} <ArrowRight
             /></nuxt-link>
           </li>
         </ul>
@@ -58,38 +58,68 @@
 <script>
 import { prepareEntry } from '@/utils/prepareEntry'
 
-const queryBuilder = (code) => {
-  return `*[_type == "entry" && _id == $id][0]{
-    "definition": content.${code}.definition,
-    "terms": content.${code}.terms[]->,
-     relatedEntries[]-> {
-      _id,
-      "term": content.${code}.terms[0]-> {
-        term
+const query = /* groq */ `*[_type == "entry" && _id == $id][0]{
+    "de": {
+      "definition": content.de.definition[] {
+          ...,
+          markDefs[] {
+          ...,
+          _type == "internalLink"  => {
+            "id": @->._id,
+            "type": @->_type
+          },
+        }
+      },
+      "terms": content.de.terms[]->,
+      relatedEntries[]-> {
+        _id,
+        "relatedEntry": content.de.terms[0]-> {
+          term
+        }
+      }
+    },
+    "fr": {
+      "definition": content.fr.definition,
+      "terms": content.fr.terms[]->,
+      relatedEntries[]-> {
+        _id,
+        "relatedEntry": content.fr.terms[0]-> {
+          term
+        }
+      }
+    },
+    "it": {
+      "definition": content.it.definition,
+      "terms": content.it.terms[]->,
+      relatedEntries[]-> {
+        _id,
+        "relatedEntry": content.it.terms[0]-> {
+          term
+        }
       }
     }
 }`
-}
 
 export default {
   name: 'EntryDetails',
   async fetch() {
     try {
-      const results = await this.$sanity.fetch(
-        queryBuilder(this.$i18n.locale),
-        {
-          id: this.$route.params.id,
-        }
-      )
-      this.entry = prepareEntry(results)
+      this.results = await this.$sanity.fetch(query, {
+        id: this.$route.params.id,
+      })
     } catch (err) {
       console.error('Oh noes: %s', err.message)
     }
   },
   data() {
     return {
-      entry: {},
+      results: {},
     }
+  },
+  computed: {
+    entry() {
+      return prepareEntry(this.results[this.$i18n.locale])
+    },
   },
 }
 </script>
