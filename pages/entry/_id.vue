@@ -60,16 +60,7 @@ import { prepareEntry } from '@/utils/prepareEntry'
 
 const query = /* groq */ `*[_type == "entry" && _id == $id][0]{
     "de": {
-      "definition": content.de.definition[] {
-          ...,
-          markDefs[] {
-          ...,
-          _type == "internalLink"  => {
-            "id": @->._id,
-            "type": @->_type
-          },
-        }
-      },
+      "definition": content.de.definition,
       "terms": content.de.terms[]->,
       relatedEntries[]-> {
         _id,
