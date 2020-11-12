@@ -33,14 +33,14 @@
       </ul>
     </section>
     <section class="mt-12">
-      <Heading1>terminofeu under the hood</Heading1>
+      <Heading2>{{ $t('builtWith') }}</Heading2>
 
-      <div class="grid items-end grid-cols-3 gap-x-8">
+      <div class="flex items-end gap-x-8">
         <a href="https://www.sanity.io/" target="_blank">
-          <SanityLogo />
+          <SanityLogo class="w-32" />
         </a>
         <a href="https://nuxtjs.org/" target="_blank">
-          <NuxtLogo class="block w-full" />
+          <NuxtLogo class="w-32" />
         </a>
       </div>
     </section>
