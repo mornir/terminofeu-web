@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="`/term/${id}/`">
+  <nuxt-link :to="localePath({ name: 'term-id', params: { id: id } })">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
