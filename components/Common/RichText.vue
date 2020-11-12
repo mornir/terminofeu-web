@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import linkToEntry from '@/components/serializers/LinkToEntry'
+import linkToEntry from '@/components/serializers/linkToEntry'
 
 export default {
   props: {
