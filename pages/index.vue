@@ -20,7 +20,7 @@
         {{ $t('search') }}
       </Heading1>
 
-      <p class="italic">Ab Januar 2021</p>
+      <p class="italic">{{ $t('searchAvailableFrom') }}</p>
     </section>
     <section>
       <Heading1>
@@ -31,7 +31,7 @@
         <li v-for="record in records" :key="record._id" class="mb-3">
           <router-link
             v-if="record.entry"
-            :to="`/entry/${record.entry}`"
+            :to="localePath({ name: 'entry-id', params: { id: record.entry } })"
             class="font-semibold hover:text-orange-600"
             >{{ record.term.designation }}
             <span v-if="record.abbreviation"

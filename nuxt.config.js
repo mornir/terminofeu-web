@@ -8,6 +8,9 @@ export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
 
+  // https://nuxtjs.org/api/configuration-modern/
+  modern: process.env.NODE_ENV === 'production',
+
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'terminofeu',

@@ -6,21 +6,21 @@
       class="-ml-5 text-base font-semibold"
     >
       <ArrowLeft />
-      Zum Eintrag</nuxt-link
+      {{ $t('navigation.openEntry') }}</nuxt-link
     >
     <article v-if="term.designation" class="mt-8">
       <Heading1>{{ term.designation }}</Heading1>
 
       <div>
-        <Heading2>Quelle der Benennung</Heading2>
+        <Heading2>{{ $t('entry.source') }}</Heading2>
         <p v-if="term.source" class="text-base">
           {{ term.source }}
         </p>
-        <p v-else>Keine Quelle</p>
+        <p v-else>{{ $t('entry.noSource') }}</p>
       </div>
 
-      <div v-if="term.source" class="mt-8">
-        <Heading2>Anmerkungen</Heading2>
+      <div v-if="term.notice" class="mt-8">
+        <Heading2>{{ $t('entry.notice') }}</Heading2>
         <SanityContent :blocks="term.notice" />
       </div>
     </article>
@@ -28,12 +28,12 @@
       <Heading1>{{ term.abbreviation }}</Heading1>
 
       <div v-if="term.sourceAbbreviation" class="mt-8">
-        <Heading2>Quelle der Abkürzung</Heading2>
+        <Heading2>{{ $t('entry.source') }}</Heading2>
         <p class="text-base">{{ term.source }}</p>
       </div>
 
       <div v-if="term.notice" class="mt-8">
-        <Heading2>Anmerkungen</Heading2>
+        <Heading2>{{ $t('entry.notice') }}</Heading2>
         <SanityContent :blocks="term.notice" />
       </div>
     </article>
