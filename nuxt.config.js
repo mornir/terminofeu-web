@@ -68,6 +68,10 @@ export default {
     },
   },
 
+  generate: {
+    fallback: true,
+  },
+
   sanity: {
     projectId: 'nipfx4rq',
     dataset: 'production',
