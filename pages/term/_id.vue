@@ -41,7 +41,7 @@
 </template>
 
 <script>
-const query = /* groq */ `*[_type == $type && _id == $id][0] {
+const query = /* groq */ `*[_type == 'term' && _id == $id][0] {
   ...,
   "entry": *[references(^._id)][0]._id
 }`
@@ -52,7 +52,6 @@ export default {
     try {
       const { term, entry } = await this.$sanity.fetch(query, {
         id: this.$route.params.id,
-        type: this.$i18n.locale + 'Term',
       })
       this.term = term
       this.entry = entry
