@@ -46,7 +46,7 @@
 </template>
 
 <script>
-const query = /* groq */ `*[_type == $type]|order(term asc)
+const query = /* groq */ `*[_type == 'term' && lang == $lang]|order(term asc)
 {
   _id,
   term,
@@ -64,7 +64,7 @@ export default {
   },
   created() {
     this.$sanity
-      .fetch(query, { type: this.$i18n.locale + 'Term' })
+      .fetch(query, { lang: this.$i18n.locale })
       .then((records) => (this.records = records))
       .catch((err) => console.error('Oh noes: %s', err.message))
   },
