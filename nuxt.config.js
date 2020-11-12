@@ -46,6 +46,7 @@ export default {
     '@nuxtjs/tailwindcss',
     '@nuxtjs/sanity',
     '@nuxtjs/google-fonts',
+    'svg-to-vue-component/nuxt',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
