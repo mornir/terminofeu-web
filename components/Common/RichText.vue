@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import externalLink from '@/components/serializers/ExternalLink'
 import linkToEntry from '@/components/serializers/LinkToEntry'
 
 export default {
@@ -18,7 +17,6 @@ export default {
     return {
       serializers: {
         marks: {
-          externalLink,
           linkToEntry,
         },
       },
