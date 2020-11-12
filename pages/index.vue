@@ -20,7 +20,7 @@
         {{ $t('search') }}
       </Heading1>
 
-      <p class="italic">Ab Januar 2021</p>
+      <p class="italic">{{ $t('searchAvailableFrom') }}</p>
     </section>
     <section>
       <Heading1>

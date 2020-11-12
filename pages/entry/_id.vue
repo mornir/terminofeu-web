@@ -2,7 +2,7 @@
   <div>
     <nuxt-link to="/" class="-ml-5 text-base font-semibold">
       <ArrowLeft />
-      Zum Verzeichnis</nuxt-link
+      {{ $t('navigation.backToIndex') }}</nuxt-link
     >
     <div v-if="$fetchState.pending">Loading</div>
     <article v-else class="mt-8">
@@ -20,12 +20,14 @@
       />
 
       <section v-if="entry.preferredTerm.abbreviation" class="mt-8">
-        <Heading2>Abkürzung</Heading2>
-        <span class="font-bold">{{ entry.preferredTerm.abbreviation }}</span>
+        <Heading2>{{ $t('entry.abbreviation') }}</Heading2>
+        <span class="font-bold">{{
+          entry.preferredTerm.abbreviation.designation
+        }}</span>
       </section>
 
       <section v-if="entry.alternativeTerms.length > 0" class="mt-8">
-        <Heading2>Alternative Begriffe</Heading2>
+        <Heading2>{{ $t('entry.alternativeTerms') }}</Heading2>
         <ul>
           <li
             v-for="alternative in entry.alternativeTerms"
@@ -38,7 +40,7 @@
       </section>
 
       <section v-if="entry.relatedEntries.length > 0" class="mt-8">
-        <Heading2>Verwandte Einträge</Heading2>
+        <Heading2>{{ $t('entry.relatedTerms') }}</Heading2>
         <ul>
           <li
             v-for="fiche in entry.relatedEntries"
