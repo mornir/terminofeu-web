@@ -18,17 +18,13 @@
       </Heading1>
 
       <ul>
-        <li v-for="record in records" :key="record._id" class="mb-3">
+        <li v-for="entry in entries" :key="entry._id" class="mb-3">
           <router-link
-            v-if="record.entry"
-            :to="localePath({ name: 'entry-id', params: { id: record.entry } })"
+            v-if="entry.deTitle"
+            :to="localePath({ name: 'entry-id', params: { id: entry._id } })"
             class="font-semibold hover:text-orange-600"
-            >{{ record.term.designation }}
-            <span v-if="record.abbreviation"
-              >({{ record.abbreviation.designation }})</span
-            ><ArrowRight
-          /></router-link>
-          <span v-else>{{ record.term.designation }}</span>
+            >{{ entry.deTitle }}
+          </router-link>
         </li>
       </ul>
     </section>
@@ -52,13 +48,14 @@ import TerminofeuLogo from '@/assets/logos/arrows.svg'
 import SanityLogo from '@/assets/logos/sanity.svg'
 import NuxtLogo from '@/assets/logos/nuxt.svg'
 
-const query = /* groq */ `*[_type == 'term' && lang == $lang]|order(term asc)
+const query = /* groq */ `
 {
-  _id,
-  term,
-  abbreviation,
-  "entry": *[_type=='entry' && references(^._id)][0]._id
-}
+  "entries": *[_type == 'entry']|order(deTitle asc)
+    {
+      _id,
+      deTitle
+    }
+ }
 `
 
 export default {
@@ -68,16 +65,8 @@ export default {
     SanityLogo,
     NuxtLogo,
   },
-  data() {
-    return {
-      records: [],
-    }
-  },
-  created() {
-    this.$sanity
-      .fetch(query, { lang: this.$i18n.locale })
-      .then((records) => (this.records = records))
-      .catch((err) => console.error('Oh noes: %s', err.message))
+  asyncData({ $sanity }) {
+    return $sanity.fetch(query)
   },
 }
 </script>
