@@ -4,28 +4,32 @@
       <ArrowLeft />
       {{ $t('navigation.backToIndex') }}</nuxt-link
     >
-    <div v-if="$fetchState.pending">Loading</div>
-    <article v-else class="mt-8">
+
+    <article class="mt-8">
       <div class="flex">
-        <Heading1 v-if="entry.preferredTerm.term">
-          {{ entry.preferredTerm.term.designation }}
+        <Heading1>
+          {{ entry.content[$i18n.locale].terms[0].designation }}
         </Heading1>
-        <ZoomLink :id="entry.preferredTerm._id" class="mt-1 ml-2" />
+        <ZoomLink :id="entry._id" class="mt-1 ml-2" />
       </div>
 
       <RichText
-        v-if="entry.definition"
-        :blocks="entry.definition"
+        v-if="entry.content[$i18n.locale].definitions[0].definition"
+        :blocks="entry.content[$i18n.locale].definitions[0].definition"
         class="-mt-2"
       />
 
-      <section v-if="entry.preferredTerm.abbreviation" class="mt-8">
+      <section
+        v-if="entry.content[$i18n.locale].terms[0].abbreviation"
+        class="mt-8"
+      >
         <Heading2>{{ $t('entry.abbreviation') }}</Heading2>
         <span class="font-bold">{{
-          entry.preferredTerm.abbreviation.designation
+          entry.content[$i18n.locale].terms[0].abbreviation
         }}</span>
       </section>
 
+      <!--
       <section v-if="entry.alternativeTerms.length > 0" class="mt-8">
         <Heading2>{{ $t('entry.alternativeTerms') }}</Heading2>
         <ul>
@@ -37,9 +41,9 @@
             {{ alternative.term }}
           </li>
         </ul>
-      </section>
+      </section> -->
 
-      <section v-if="entry.relatedEntries.length > 0" class="mt-8">
+      <!--     <section v-if="entry.relatedEntries.length > 0" class="mt-8">
         <Heading2>{{ $t('entry.relatedTerms') }}</Heading2>
         <ul>
           <li
@@ -52,67 +56,20 @@
             /></nuxt-link>
           </li>
         </ul>
-      </section>
+      </section> -->
     </article>
   </div>
 </template>
 
 <script>
-import { prepareEntry } from '@/utils/prepareEntry'
-
-const query = /* groq */ `*[_type == "entry" && _id == $id][0]{
-    "de": {
-      "definition": content.de.definition,
-      "terms": content.de.terms[]->,
-      relatedEntries[]-> {
-        _id,
-        "relatedEntry": content.de.terms[0]-> {
-          term
-        }
-      }
-    },
-    "fr": {
-      "definition": content.fr.definition,
-      "terms": content.fr.terms[]->,
-      relatedEntries[]-> {
-        _id,
-        "relatedEntry": content.fr.terms[0]-> {
-          term
-        }
-      }
-    },
-    "it": {
-      "definition": content.it.definition,
-      "terms": content.it.terms[]->,
-      relatedEntries[]-> {
-        _id,
-        "relatedEntry": content.it.terms[0]-> {
-          term
-        }
-      }
-    }
-}`
+const query = /* groq */ `{ "entry": *[_type == "entry" && _id == $id][0]}`
 
 export default {
   name: 'EntryDetails',
-  async fetch() {
-    try {
-      this.results = await this.$sanity.fetch(query, {
-        id: this.$route.params.id,
-      })
-    } catch (err) {
-      console.error('Oh noes: %s', err.message)
-    }
-  },
-  data() {
-    return {
-      results: {},
-    }
-  },
-  computed: {
-    entry() {
-      return prepareEntry(this.results[this.$i18n.locale])
-    },
+  asyncData({ $sanity, params }) {
+    return $sanity.fetch(query, {
+      id: params.id,
+    })
   },
 }
 </script>
