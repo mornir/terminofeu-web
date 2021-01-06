@@ -10,7 +10,7 @@
         <Heading1>
           {{ entry.content[$i18n.locale].terms[0].designation }}
         </Heading1>
-        <ZoomLink :id="entry._id" class="mt-1 ml-2" />
+        <!-- <ZoomLink :id="entry._id" class="mt-1 ml-2" /> -->
       </div>
 
       <RichText
