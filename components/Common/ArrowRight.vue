@@ -3,7 +3,7 @@
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
-    class="inline-block h-6 text-orange-600 stroke-current stroke-2"
+    class="inline-block h-6 stroke-current stroke-2 text-primary"
   >
     <path
       stroke-linecap="round"
