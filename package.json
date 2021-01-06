@@ -12,21 +12,21 @@
   },
   "dependencies": {
     "@nuxtjs/sanity": "^0.4.2",
-    "@sanity/client": "^2.0.9",
-    "core-js": "^3.8.0",
-    "nuxt": "^2.14.9",
-    "nuxt-i18n": "^6.15.4"
+    "@sanity/client": "^2.1.4",
+    "core-js": "^3.8.2",
+    "nuxt": "^2.14.12",
+    "nuxt-i18n": "^6.17.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",
-    "@nuxtjs/eslint-module": "^3.0.1",
+    "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/google-fonts": "^1.2.0",
-    "@nuxtjs/tailwindcss": "^3.3.3",
+    "@nuxtjs/tailwindcss": "^3.4.2",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.15.0",
-    "eslint-config-prettier": "^6.15.0",
+    "eslint": "^7.17.0",
+    "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-nuxt": "^2.0.0",
-    "eslint-plugin-prettier": "^3.2.0",
+    "eslint-plugin-prettier": "^3.3.1",
     "prettier": "^2.2.1",
     "svg-to-vue-component": "^0.3.8"
   }

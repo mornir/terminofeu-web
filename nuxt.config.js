@@ -69,6 +69,10 @@ export default {
     },
   },
 
+  router: {
+    prefetchLinks: false,
+  },
+
   generate: {
     fallback: true,
   },
@@ -78,6 +82,7 @@ export default {
     dataset: 'production',
     minimal: false,
   },
+
   googleFonts: {
     families: {
       Nunito: [400, 600, 700],

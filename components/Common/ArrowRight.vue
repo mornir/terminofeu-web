@@ -6,8 +6,8 @@
     class="inline-block h-6 text-orange-600 stroke-current stroke-2"
   >
     <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke-linecap="round"
+      stroke-linejoin="round"
       d="M14 5l7 7m0 0l-7 7m7-7H3"
     />
   </svg>

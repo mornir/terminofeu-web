@@ -20,10 +20,10 @@
       <ul>
         <li v-for="entry in entries" :key="entry._id" class="mb-3">
           <router-link
-            v-if="entry.deTitle"
+            v-if="entry.title"
             :to="localePath({ name: 'entry-id', params: { id: entry._id } })"
             class="font-semibold hover:text-orange-600"
-            >{{ entry.deTitle }}
+            >{{ entry.title }}
           </router-link>
         </li>
       </ul>
@@ -50,10 +50,20 @@ import NuxtLogo from '@/assets/logos/nuxt.svg'
 
 const query = /* groq */ `
 {
-  "entries": *[_type == 'entry']|order(deTitle asc)
+  "deEntries": *[_type == 'entry']|order(deTitle asc)
     {
       _id,
-      deTitle
+      "title": deTitle
+    },
+  "frEntries": *[_type == 'entry']|order(frTitle asc)
+    {
+      _id,
+      "title": frTitle
+    },
+  "itEntries": *[_type == 'entry']|order(itTitle asc)
+    {
+      _id,
+      "title": itTitle
     }
  }
 `
@@ -67,6 +77,11 @@ export default {
   },
   asyncData({ $sanity }) {
     return $sanity.fetch(query)
+  },
+  computed: {
+    entries() {
+      return this[this.$i18n.locale + 'Entries']
+    },
   },
 }
 </script>
