@@ -1,6 +1,6 @@
 <template>
-  <header class="bg-orange-600">
-    <nav class="flex justify-around divide-x-2 divide-orange-700">
+  <header class="bg-primary">
+    <nav class="flex justify-around divide-x-2 divide-primary-alt">
       <LangLink
         v-for="locale in $i18n.locales"
         :key="locale.code"

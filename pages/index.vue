@@ -1,7 +1,7 @@
 <template>
   <div class="px-8 py-6">
     <section class="mt-8 mb-12">
-      <h1 class="text-3xl font-bold text-center">terminofeu</h1>
+      <h1 class="text-3xl font-bold leading-normal text-center">terminofeu</h1>
       <TerminofeuLogo class="block w-56 mx-auto -mt-4" />
     </section>
 
@@ -22,7 +22,7 @@
           <router-link
             v-if="entry.title"
             :to="localePath({ name: 'entry-id', params: { id: entry._id } })"
-            class="font-semibold hover:text-orange-600"
+            class="font-semibold hover:text-primary"
             >{{ entry.title }}
           </router-link>
         </li>
