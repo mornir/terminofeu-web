@@ -1,7 +1,7 @@
 <template>
   <div class="px-8 py-6">
     <section class="mt-8 mb-12">
-      <h1 class="text-3xl font-bold leading-normal text-center">terminofeu</h1>
+      <h1 class="text-3xl font-bold leading-normal text-center">Terminofeu</h1>
       <TerminofeuLogo class="block w-56 mx-auto -mt-4" />
     </section>
 
