@@ -81,6 +81,7 @@ export default {
     projectId: 'nipfx4rq',
     dataset: 'production',
     minimal: false,
+    withCredentials: true,
   },
 
   googleFonts: {
