@@ -15,7 +15,8 @@
     "@sanity/client": "^2.1.4",
     "core-js": "^3.8.2",
     "nuxt": "^2.14.12",
-    "nuxt-i18n": "^6.17.0"
+    "nuxt-i18n": "^6.17.0",
+    "sort-on": "^4.1.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",
