@@ -18,12 +18,12 @@
       </Heading1>
 
       <ul>
-        <li v-for="entry in entries" :key="entry._id" class="mb-3">
+        <li v-for="entry in sortedEntries" :key="entry._id" class="mb-3">
           <router-link
-            v-if="entry.title"
+            v-if="entry[title]"
             :to="localePath({ name: 'entry-id', params: { id: entry._id } })"
             class="font-semibold hover:text-primary"
-            >{{ entry.title }}
+            >{{ entry[title] }}
           </router-link>
         </li>
       </ul>
@@ -48,22 +48,16 @@ import TerminofeuLogo from '@/assets/logos/arrows.svg'
 import SanityLogo from '@/assets/logos/sanity.svg'
 import NuxtLogo from '@/assets/logos/nuxt.svg'
 
+import sortOn from 'sort-on'
+
 const query = /* groq */ `
 {
-  "deEntries": *[_type == 'entry']|order(deTitle asc)
+  "entries": *[_type == 'entry']
     {
       _id,
-      "title": deTitle
-    },
-  "frEntries": *[_type == 'entry']|order(frTitle asc)
-    {
-      _id,
-      "title": frTitle
-    },
-  "itEntries": *[_type == 'entry']|order(itTitle asc)
-    {
-      _id,
-      "title": itTitle
+      deTitle,
+      frTitle,
+      itTitle,
     }
  }
 `
@@ -79,8 +73,11 @@ export default {
     return $sanity.fetch(query)
   },
   computed: {
-    entries() {
-      return this[this.$i18n.locale + 'Entries']
+    sortedEntries() {
+      return sortOn(this.entries, this.title)
+    },
+    title() {
+      return this.$i18n.locale + 'Title'
     },
   },
 }

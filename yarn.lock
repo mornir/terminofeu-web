@@ -3678,7 +3678,7 @@ dot-case@^3.0.3:
     no-case "^3.0.3"
     tslib "^1.10.0"
 
-dot-prop@^5.2.0:
+dot-prop@^5.0.0, dot-prop@^5.2.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-5.3.0.tgz#90ccce708cd9cd82cc4dc8c3ddd9abdd55b20e88"
   integrity sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==
@@ -8745,6 +8745,14 @@ sort-keys@^2.0.0:
   integrity sha1-ZYU1WEhh7JfXMNbPQYIuH1ZoQSg=
   dependencies:
     is-plain-obj "^1.0.0"
+
+sort-on@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/sort-on/-/sort-on-4.1.0.tgz#939e671a35eddcf8b6c64fc3cbbdf2119f8e23f6"
+  integrity sha512-HStto6jwVlc3PL/cJplRMS1jiAwoqkH+BD375uDZU5hyYne5G2wlj7d1ggPVm0SVu7B6MxCjMQFlzDlzqmBOWg==
+  dependencies:
+    arrify "^2.0.1"
+    dot-prop "^5.0.0"
 
 source-list-map@^2.0.0:
   version "2.0.1"
