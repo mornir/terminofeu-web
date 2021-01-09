@@ -2,14 +2,14 @@
   <div class="py-6">
     <section class="flex items-center justify-center mt-8 mb-10">
       <TerminofeuLogo class="w-10 mr-2 fill-current text-primary" />
-      <h1 class="text-4xl font-bold leading-normal">Terminofeu</h1>
+      <h1 class="text-4xl font-bold">Terminofeu</h1>
     </section>
 
     <section class="mb-12">
       <InstantSearch
         :search-key="title"
         :search-array="entries"
-        class="mb-4"
+        class="mb-6"
         @searched="displayResults"
       />
       <div class="px-8">

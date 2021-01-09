@@ -2,7 +2,7 @@
   <input
     v-debounce:300ms="search"
     type="search"
-    class="w-full px-8 py-4 text-xl font-semibold placeholder-black focus:outline-none bg-primary-light"
+    class="w-full px-8 py-4 text-xl font-semibold text-white placeholder-gray-600 bg-orange-200 focus:outline-none focus:bg-orange-300"
     placeholder="Begriff suchen"
   />
 </template>
