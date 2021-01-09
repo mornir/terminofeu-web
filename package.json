@@ -13,10 +13,13 @@
   "dependencies": {
     "@nuxtjs/sanity": "^0.4.2",
     "@sanity/client": "^2.1.4",
+    "algoliasearch": "^4.8.3",
     "core-js": "^3.8.2",
+    "instantsearch.css": "^7.4.5",
     "nuxt": "^2.14.12",
     "nuxt-i18n": "^6.17.0",
-    "sort-on": "^4.1.0"
+    "sort-on": "^4.1.0",
+    "vue-instantsearch": "^3.4.3"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",

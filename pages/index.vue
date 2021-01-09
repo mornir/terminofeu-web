@@ -10,7 +10,7 @@
         {{ $t('search') }}
       </Heading1>
 
-      <p class="italic">{{ $t('searchAvailableFrom') }}</p>
+      <InstantSearch />
     </section>
     <section>
       <Heading1>
