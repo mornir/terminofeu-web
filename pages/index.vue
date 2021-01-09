@@ -10,7 +10,12 @@
         {{ $t('search') }}
       </Heading1>
 
-      <p class="italic">{{ $t('searchAvailableFrom') }}</p>
+      <input
+        v-model="query"
+        type="search"
+        class="border-2 border-black focus:outline-none"
+        @input="search"
+      />
     </section>
     <section>
       <Heading1>
@@ -18,7 +23,7 @@
       </Heading1>
 
       <ul>
-        <li v-for="entry in sortedEntries" :key="entry._id" class="mb-3">
+        <li v-for="entry in entries" :key="entry._id" class="mb-3">
           <router-link
             v-if="entry[title]"
             :to="localePath({ name: 'entry-id', params: { id: entry._id } })"
@@ -44,22 +49,20 @@
 </template>
 
 <script>
+import Fuse from 'fuse.js'
 import TerminofeuLogo from '@/assets/logos/arrows.svg'
 import SanityLogo from '@/assets/logos/sanity.svg'
 import NuxtLogo from '@/assets/logos/nuxt.svg'
 
 import sortOn from 'sort-on'
 
-const query = /* groq */ `
-{
-  "entries": *[_type == 'entry']
+const query = /* groq */ `*[_type == 'entry']
     {
       _id,
       deTitle,
       frTitle,
       itTitle,
     }
- }
 `
 
 export default {
@@ -69,15 +72,36 @@ export default {
     SanityLogo,
     NuxtLogo,
   },
-  asyncData({ $sanity }) {
-    return $sanity.fetch(query)
+  async asyncData({ app: { i18n, $sanity } }) {
+    const results = await $sanity.fetch(query)
+    return {
+      entries: sortOn(results, i18n.locale + 'Title'),
+    }
+  },
+  data() {
+    return {
+      entries: [],
+      query: '',
+      fuse: null,
+    }
   },
   computed: {
-    sortedEntries() {
-      return sortOn(this.entries, this.title)
-    },
     title() {
       return this.$i18n.locale + 'Title'
+    },
+  },
+  created() {
+    this.fuse = new Fuse(this.entries, {
+      keys: [this.title],
+      includeScore: true,
+    })
+  },
+  methods: {
+    search() {
+      this.entries = this.fuse
+        .search(this.query)
+        .filter((entry) => entry.score < 0.22)
+        .map((entry) => entry.item)
     },
   },
 }
