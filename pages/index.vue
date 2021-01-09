@@ -64,8 +64,9 @@ export default {
   },
   async asyncData({ app: { i18n, $sanity } }) {
     const results = await $sanity.fetch(query)
+    const entries = sortOn(results, i18n.locale + 'Title')
     return {
-      entries: sortOn(results, i18n.locale + 'Title'),
+      entries,
     }
   },
   computed: {
