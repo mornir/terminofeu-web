@@ -36,16 +36,17 @@ export default {
   },
   methods: {
     search(query) {
+      if (!query.trim()) {
+        this.$emit('searched', this.localArray)
+        return
+      }
+
       const results = this.fuse
         .search(query)
         .filter((entry) => entry.score < 0.33)
         .map((entry) => entry.item)
 
-      if (results.length > 0) {
-        this.$emit('searched', results)
-      } else {
-        this.$emit('searched', this.localArray)
-      }
+      this.$emit('searched', results)
     },
   },
 }

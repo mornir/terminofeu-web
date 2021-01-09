@@ -12,16 +12,19 @@
         class="mb-4"
         @searched="displayResults"
       />
-      <ul class="px-8">
-        <li v-for="entry in entries" :key="entry._id" class="mb-2">
-          <router-link
-            v-if="entry[title]"
-            :to="localePath({ name: 'entry-id', params: { id: entry._id } })"
-            class="font-semibold hover:text-primary"
-            >{{ entry[title] }}
-          </router-link>
-        </li>
-      </ul>
+      <div class="px-8">
+        <ul v-if="hasMatches">
+          <li v-for="entry in entries" :key="entry._id" class="mb-2">
+            <router-link
+              v-if="entry[title]"
+              :to="localePath({ name: 'entry-id', params: { id: entry._id } })"
+              class="font-semibold hover:text-primary"
+              >{{ entry[title] }}
+            </router-link>
+          </li>
+        </ul>
+        <p v-else>{{ $t('noResults') }}</p>
+      </div>
     </section>
 
     <section class="px-8 mt-12">
@@ -69,6 +72,11 @@ export default {
       entries,
     }
   },
+  data() {
+    return {
+      hasMatches: true,
+    }
+  },
   computed: {
     title() {
       return this.$i18n.locale + 'Title'
@@ -76,7 +84,10 @@ export default {
   },
   methods: {
     displayResults(results) {
-      this.entries = results
+      this.hasMatches = results.length > 0
+      if (this.hasMatches) {
+        this.entries = results
+      }
     },
   },
 }

@@ -1,7 +1,7 @@
 {
   "index": "Verzeichnis",
   "search": "Suche",
-  "searchAvailableFrom": "Anfangs 2021",
+  "noResults": "Keine Ergebnisse gefunden",
   "builtWith": "Entwickelt mit",
   "entry": {
     "relatedTerms": "Verwandte Einträge",

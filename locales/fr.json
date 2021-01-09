@@ -1,7 +1,7 @@
 {
   "index": "Index",
   "search": "Recherche",
-  "searchAvailableFrom": "Début 2021",
+  "noResults": "Aucun résultat trouvé",
   "builtWith": "Développé avec",
   "entry": {
     "relatedTerms": "Termes apparentés",
