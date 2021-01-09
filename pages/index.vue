@@ -1,8 +1,8 @@
 <template>
   <div class="py-6">
-    <section class="mt-8 mb-12">
-      <h1 class="text-3xl font-bold leading-normal text-center">Terminofeu</h1>
-      <TerminofeuLogo class="block w-56 mx-auto -mt-4" />
+    <section class="flex items-center justify-center mt-8 mb-10">
+      <TerminofeuLogo class="w-10 mr-2 fill-current text-primary" />
+      <h1 class="text-4xl font-bold leading-normal">Terminofeu</h1>
     </section>
 
     <section class="mb-12">
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import TerminofeuLogo from '@/assets/logos/arrows.svg'
+import TerminofeuLogo from '@/assets/logos/terminofeu.svg'
 import SanityLogo from '@/assets/logos/sanity.svg'
 import NuxtLogo from '@/assets/logos/nuxt.svg'
 
