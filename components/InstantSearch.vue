@@ -1,14 +1,15 @@
 <template>
   <input
+    v-debounce:300ms="search"
     type="search"
     class="w-full px-8 py-4 text-xl font-semibold placeholder-black focus:outline-none bg-primary-light"
     placeholder="Begriff suchen"
-    @input="search"
   />
 </template>
 
 <script>
 import Fuse from 'fuse.js'
+
 export default {
   props: {
     searchArray: {
@@ -30,12 +31,11 @@ export default {
       keys: [this.searchKey],
       includeScore: true,
     })
-    // destroy?
   },
   methods: {
-    search($event) {
+    search(query) {
       const results = this.fuse
-        .search($event.target.value)
+        .search(query)
         .filter((entry) => entry.score < 0.33)
         .map((entry) => entry.item)
 

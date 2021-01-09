@@ -1,4 +1,4 @@
-import createClient from '@sanity/client'
+// import createClient from '@sanity/client'
 
 import de from './locales/de.json'
 import fr from './locales/fr.json'
@@ -11,7 +11,7 @@ const sanityConfig = {
   useCdn: true,
 }
 
-const sanityClient = createClient(sanityConfig)
+// const sanityClient = createClient(sanityConfig)
 
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
@@ -45,7 +45,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: ['~/plugins/vue-debounce.js'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
