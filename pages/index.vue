@@ -9,12 +9,10 @@
       <Heading1>
         {{ $t('search') }}
       </Heading1>
-
-      <input
-        v-model="query"
-        type="search"
-        class="border-2 border-black focus:outline-none"
-        @input="search"
+      <InstantSearch
+        :search-key="title"
+        :search-array="entries"
+        @searched="displayResults"
       />
     </section>
     <section>
@@ -49,7 +47,6 @@
 </template>
 
 <script>
-import Fuse from 'fuse.js'
 import TerminofeuLogo from '@/assets/logos/arrows.svg'
 import SanityLogo from '@/assets/logos/sanity.svg'
 import NuxtLogo from '@/assets/logos/nuxt.svg'
@@ -78,30 +75,14 @@ export default {
       entries: sortOn(results, i18n.locale + 'Title'),
     }
   },
-  data() {
-    return {
-      entries: [],
-      query: '',
-      fuse: null,
-    }
-  },
   computed: {
     title() {
       return this.$i18n.locale + 'Title'
     },
   },
-  created() {
-    this.fuse = new Fuse(this.entries, {
-      keys: [this.title],
-      includeScore: true,
-    })
-  },
   methods: {
-    search() {
-      this.entries = this.fuse
-        .search(this.query)
-        .filter((entry) => entry.score < 0.22)
-        .map((entry) => entry.item)
+    displayResults(results) {
+      this.entries = results
     },
   },
 }
