@@ -24,6 +24,7 @@ export default {
   data() {
     return {
       fuse: null,
+      localArray: [],
     }
   },
   created() {
@@ -31,6 +32,7 @@ export default {
       keys: [this.searchKey],
       includeScore: true,
     })
+    this.localArray = this.searchArray
   },
   methods: {
     search(query) {
@@ -39,7 +41,11 @@ export default {
         .filter((entry) => entry.score < 0.33)
         .map((entry) => entry.item)
 
-      this.$emit('searched', results)
+      if (results.length > 0) {
+        this.$emit('searched', results)
+      } else {
+        this.$emit('searched', this.localArray)
+      }
     },
   },
 }
