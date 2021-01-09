@@ -35,7 +35,7 @@ export default {
     search($event) {
       const results = this.fuse
         .search($event.target.value)
-        .filter((entry) => entry.score < 0.22)
+        .filter((entry) => entry.score < 0.33)
         .map((entry) => entry.item)
 
       this.$emit('searched', results)
