@@ -1,27 +1,19 @@
 <template>
-  <div class="px-8 py-6">
+  <div class="py-6">
     <section class="mt-8 mb-12">
       <h1 class="text-3xl font-bold leading-normal text-center">Terminofeu</h1>
       <TerminofeuLogo class="block w-56 mx-auto -mt-4" />
     </section>
 
     <section class="mb-12">
-      <Heading1>
-        {{ $t('search') }}
-      </Heading1>
       <InstantSearch
         :search-key="title"
         :search-array="entries"
+        class="mb-4"
         @searched="displayResults"
       />
-    </section>
-    <section>
-      <Heading1>
-        {{ $t('index') }}
-      </Heading1>
-
-      <ul>
-        <li v-for="entry in entries" :key="entry._id" class="mb-3">
+      <ul class="px-8">
+        <li v-for="entry in entries" :key="entry._id" class="mb-2">
           <router-link
             v-if="entry[title]"
             :to="localePath({ name: 'entry-id', params: { id: entry._id } })"
@@ -31,15 +23,16 @@
         </li>
       </ul>
     </section>
-    <section class="mt-12">
+
+    <section class="px-8 mt-12">
       <Heading2>{{ $t('builtWith') }}</Heading2>
 
       <div class="flex items-end gap-x-8">
         <a href="https://www.sanity.io/" target="_blank">
-          <SanityLogo class="w-32" />
+          <SanityLogo class="w-28" />
         </a>
         <a href="https://nuxtjs.org/" target="_blank">
-          <NuxtLogo class="w-32" />
+          <NuxtLogo class="w-28" />
         </a>
       </div>
     </section>

@@ -1,7 +1,8 @@
 <template>
   <input
     type="search"
-    class="border-2 border-black focus:outline-none"
+    class="w-full px-8 py-4 text-xl font-semibold placeholder-black focus:outline-none bg-primary-light"
+    placeholder="Begriff suchen"
     @input="search"
   />
 </template>
