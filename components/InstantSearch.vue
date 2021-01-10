@@ -15,12 +15,12 @@
     </svg>
     <input
       id="search-box"
-      @keyup.enter="lookUp"
       v-debounce:300ms="search"
       autofocus
       type="search"
       class="w-full px-8 py-4 text-xl font-semibold placeholder-gray-600 bg-orange-200 focus:text-white focus:outline-none focus:bg-primary-alt focus:placeholder-primary-alt"
       :placeholder="$t('searchTerm')"
+      @keyup.enter="lookUp"
     />
   </div>
 </template>
@@ -34,10 +34,6 @@ export default {
       type: Array,
       required: true,
     },
-    searchKey: {
-      type: String,
-      required: true,
-    },
   },
   data() {
     return {
@@ -47,7 +43,7 @@ export default {
   },
   created() {
     this.fuse = new Fuse(this.searchArray, {
-      keys: [this.searchKey],
+      keys: ['term'],
       includeScore: true,
     })
     this.localArray = this.searchArray
