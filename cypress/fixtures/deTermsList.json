@@ -3,6 +3,7 @@
     "_id": "2485c8ef-d766-46d7-9917-6e8aa96c4344",
     "terms": [
       {
+        "_key": "1",
         "abbreviation": "LRWA",
         "designation": "Entrauchung mit Lüfter der Feuerwehr"
       }
@@ -12,13 +13,16 @@
     "_id": "9d61640b-fe7b-4bc5-a843-5fafdf06c7e2",
     "terms": [
       {
+        "_key": "2",
         "abbreviation": "HFL",
         "designation": "Hand­feu­er­lö­scher"
       },
       {
+        "_key": "3",
         "designation": "Feu­er­lö­scher"
       },
       {
+        "_key": "4",
         "designation": "Feu­er­lösch­ap­pa­rat"
       }
     ]
@@ -27,8 +31,12 @@
     "_id": "61e28a88-8e82-4b9b-b446-50ad430c5efa",
     "terms": [
       {
+        "_key": "5",
         "designation": "Brandschutzanstrich"
       }
     ]
+  },
+  {
+    "_id": "063091dc-983f-45f0-a25b-dd3907f5c79c"
   }
 ]

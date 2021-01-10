@@ -1,11 +1,12 @@
 /// <reference types="cypress" />
 
-import { generateTermsList } from '../../utils/generateTermsList'
+import { generateTermsList } from '../../utils/utils.js'
 
-// import deTermsList from '../fixtures/deTermsList.json'
+import deTermsList from '../fixtures/deTermsList.json'
+import deTermsFormatted from '../fixtures/deTermsFormatted.json'
 
 context('Utils', () => {
-  cy.fixture('deTermsList').then((json) => {
-    expect(generateTermsList(json)).to.deep.equal({ foo: 'bar' })
+  it('formats the data as expected', () => {
+    expect(generateTermsList(deTermsList)).to.deep.equal(deTermsFormatted)
   })
 })
