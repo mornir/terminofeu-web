@@ -11,9 +11,10 @@
         :search-array="entries"
         class="mb-6"
         @searched="displayResults"
+        @lookedUp="openEntry"
       />
       <div class="px-8">
-        <ul v-if="hasMatches">
+        <ul v-if="hasMatches" data-cy="terms-list">
           <li v-for="entry in entries" :key="entry._id" class="mb-2">
             <router-link
               v-if="entry[title]"
@@ -88,6 +89,12 @@ export default {
       if (this.hasMatches) {
         this.entries = results
       }
+    },
+    openEntry() {
+      const id = this.entries[0]?._id
+      if (!id) return
+      const path = this.localePath({ name: 'entry-id', params: { id } })
+      this.$router.push(path)
     },
   },
 }

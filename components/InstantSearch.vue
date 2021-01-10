@@ -15,6 +15,7 @@
     </svg>
     <input
       id="search-box"
+      @keyup.enter="lookUp"
       v-debounce:300ms="search"
       autofocus
       type="search"
@@ -68,6 +69,11 @@ export default {
         .map((entry) => entry.item)
 
       this.$emit('searched', results)
+    },
+    lookUp($event) {
+      if ($event.target.value.trim()) {
+        this.$emit('lookedUp')
+      }
     },
   },
 }
