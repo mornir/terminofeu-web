@@ -1,0 +1,34 @@
+[
+  {
+    "_id": "2485c8ef-d766-46d7-9917-6e8aa96c4344",
+    "terms": [
+      {
+        "abbreviation": "LRWA",
+        "designation": "Entrauchung mit Lüfter der Feuerwehr"
+      }
+    ]
+  },
+  {
+    "_id": "9d61640b-fe7b-4bc5-a843-5fafdf06c7e2",
+    "terms": [
+      {
+        "abbreviation": "HFL",
+        "designation": "Hand­feu­er­lö­scher"
+      },
+      {
+        "designation": "Feu­er­lö­scher"
+      },
+      {
+        "designation": "Feu­er­lösch­ap­pa­rat"
+      }
+    ]
+  },
+  {
+    "_id": "61e28a88-8e82-4b9b-b446-50ad430c5efa",
+    "terms": [
+      {
+        "designation": "Brandschutzanstrich"
+      }
+    ]
+  }
+]
