@@ -19,7 +19,7 @@
       autofocus
       type="search"
       class="w-full px-8 py-4 text-xl font-semibold placeholder-gray-600 bg-orange-200 focus:text-white focus:outline-none focus:bg-primary-alt focus:placeholder-primary-alt"
-      placeholder="Begriff suchen"
+      :placeholder="$t('searchTerm')"
     />
   </div>
 </template>
