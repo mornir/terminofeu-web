@@ -1,9 +1,21 @@
+// import createClient from '@sanity/client'
+
 import de from './locales/de.json'
 import fr from './locales/fr.json'
 
+const sanityConfig = {
+  projectId: 'nipfx4rq',
+  dataset: 'production',
+  withCredentials: true,
+  minimal: true,
+  useCdn: true,
+}
+
+// const sanityClient = createClient(sanityConfig)
+
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
-  ssr: false,
+  ssr: true,
 
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
@@ -33,7 +45,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: ['~/plugins/vue-debounce.js'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -75,13 +87,19 @@ export default {
 
   generate: {
     fallback: true,
+    crawler: false,
+    /*    routes: () => {
+      return sanityClient
+        .fetch(`[_type == 'entry']`)
+        .then((entry) => {
+          return [entry]
+        })
+        .catch((e) => console.error(e))
+    }, */
   },
 
   sanity: {
-    projectId: 'nipfx4rq',
-    dataset: 'production',
-    minimal: false,
-    withCredentials: true,
+    ...sanityConfig,
   },
 
   googleFonts: {

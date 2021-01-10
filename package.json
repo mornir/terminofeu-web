@@ -14,9 +14,11 @@
     "@nuxtjs/sanity": "^0.4.2",
     "@sanity/client": "^2.1.4",
     "core-js": "^3.8.2",
+    "fuse.js": "^6.4.6",
     "nuxt": "^2.14.12",
     "nuxt-i18n": "^6.17.0",
-    "sort-on": "^4.1.0"
+    "sort-on": "^4.1.0",
+    "vue-debounce": "^2.6.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",
