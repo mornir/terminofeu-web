@@ -7,7 +7,6 @@
 
     <section class="mb-12">
       <InstantSearch
-        :search-key="title"
         :search-array="entries"
         class="mb-6"
         @searched="displayResults"
@@ -15,12 +14,13 @@
       />
       <div class="px-8">
         <ul v-if="hasMatches" data-cy="terms-list">
-          <li v-for="entry in entries" :key="entry._id" class="mb-2">
+          <li v-for="entry in entries" :key="entry.key" class="mb-2">
             <router-link
-              v-if="entry[title]"
-              :to="localePath({ name: 'entry-id', params: { id: entry._id } })"
+              :to="
+                localePath({ name: 'entry-id', params: { id: entry.entry_id } })
+              "
               class="font-semibold hover:text-primary"
-              >{{ entry[title] }}
+              >{{ entry.term }}
             </router-link>
           </li>
         </ul>
@@ -44,20 +44,13 @@
 </template>
 
 <script>
+import sortOn from 'sort-on'
+
 import TerminofeuLogo from '@/assets/logos/terminofeu.svg'
 import SanityLogo from '@/assets/logos/sanity.svg'
 import NuxtLogo from '@/assets/logos/nuxt.svg'
 
-import sortOn from 'sort-on'
-
-const query = /* groq */ `*[_type == 'entry']
-    {
-      _id,
-      deTitle,
-      frTitle,
-      itTitle,
-    }
-`
+import { generateTermsList } from '@/utils/utils.js'
 
 export default {
   name: 'Home',
@@ -67,8 +60,18 @@ export default {
     NuxtLogo,
   },
   async asyncData({ app: { i18n, $sanity } }) {
+    const query = `*[_type == "entry"] {
+		_id,
+    "terms": content.${i18n.locale}.terms[] {
+              _key,
+              designation,
+              abbreviation
+      }
+    }
+    `
     const results = await $sanity.fetch(query)
-    const entries = sortOn(results, i18n.locale + 'Title')
+    const formattedEntries = generateTermsList(results)
+    const entries = sortOn(formattedEntries, 'term')
     return {
       entries,
     }
@@ -78,11 +81,6 @@ export default {
       hasMatches: true,
     }
   },
-  computed: {
-    title() {
-      return this.$i18n.locale + 'Title'
-    },
-  },
   methods: {
     displayResults(results) {
       this.hasMatches = results.length > 0
@@ -91,7 +89,7 @@ export default {
       }
     },
     openEntry() {
-      const id = this.entries[0]?._id
+      const id = this.entries[0]?.entry_id
       if (!id) return
       const path = this.localePath({ name: 'entry-id', params: { id } })
       this.$router.push(path)
