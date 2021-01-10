@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="px-8">
     <nuxt-link to="/" class="-ml-5 text-base font-semibold">
       <ArrowLeft />
       {{ $t('navigation.backToIndex') }}</nuxt-link
