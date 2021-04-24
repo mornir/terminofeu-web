@@ -13,7 +13,7 @@ const messages = {
 }
 
 // Create VueI18n instance with options
-const i18n = new createI18n({
+const i18n = createI18n({
   locale: 'de', // set locale
   messages, // set locale messages
 })
