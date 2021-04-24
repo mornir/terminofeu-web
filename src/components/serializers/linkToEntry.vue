@@ -1,10 +1,10 @@
 <template>
-  <nuxt-link
+  <router-link
     v-if="_ref"
     :to="localePath({ name: 'entry-id', params: { id: _ref } })"
     class="underline"
     ><slot
-  /></nuxt-link>
+  /></router-link>
 </template>
 
 <script>

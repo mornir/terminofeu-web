@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Home from './pages/Home.vue'
-/* import About from './pages/About.vue' */
-import TermEntry from './pages/TermEntry.vue'
+import Home from './views/Home.vue'
+/* import About from './views/About.vue' */
+import TermEntry from './views/TermEntry.vue'
 
 export default createRouter({
   history: createWebHistory(),

@@ -6,12 +6,12 @@
     </section>
 
     <section class="mb-12">
-      <InstantSearch
+      <!--  <InstantSearch
         :search-array="entries"
         class="mb-6"
         @searched="displayResults"
         @lookedUp="openEntry"
-      />
+      /> -->
       <div class="px-8">
         <ul v-if="hasMatches" data-cy="terms-list">
           <li v-for="entry in entries" :key="entry.key" class="mb-2">

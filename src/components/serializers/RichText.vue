@@ -4,7 +4,7 @@
 
 <script>
 import { SanityBlocks } from 'sanity-blocks-vue-component'
-import linkToEntry from '@/components/serializers/linkToEntry'
+import linkToEntry from './linkToEntry.vue'
 
 export default {
   components: { SanityBlocks },
