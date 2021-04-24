@@ -15,10 +15,10 @@ const sanityConfig = {
 
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
-  ssr: true,
+  ssr: false,
 
   // Target (https://go.nuxtjs.dev/config-target)
-  target: 'static',
+  //target: 'static',
 
   // https://nuxtjs.org/api/configuration-modern/
   modern: process.env.NODE_ENV === 'production',
