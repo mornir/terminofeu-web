@@ -1,7 +1,7 @@
 <template>
   <div class="py-6">
     <section class="flex items-center justify-center mt-8 mb-10">
-      <TerminofeuLogo class="w-10 mr-2 fill-current text-primary" />
+      <!--      <TerminofeuLogo class="w-10 mr-2 fill-current text-primary" /> -->
       <h1 class="text-4xl font-bold">Terminofeu</h1>
     </section>
 
@@ -28,7 +28,7 @@
       </div>
     </section>
 
-    <section class="px-8 mt-12">
+    <!--     <section class="px-8 mt-12">
       <Heading2>{{ $t('builtWith') }}</Heading2>
 
       <div class="flex items-end gap-x-8">
@@ -39,26 +39,26 @@
           <NuxtLogo class="w-28" />
         </a>
       </div>
-    </section>
+    </section> -->
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import sortOn from 'sort-on'
-
-import TerminofeuLogo from '@/assets/logos/terminofeu.svg'
+import { defineComponent } from 'vue'
+/* import TerminofeuLogo from '@/assets/logos/terminofeu.svg'
 import SanityLogo from '@/assets/logos/sanity.svg'
 import NuxtLogo from '@/assets/logos/nuxt.svg'
+ */
+import { generateTermsList } from '../utils/utils'
 
-import { generateTermsList } from '@/utils/utils.js'
-
-export default {
+export default defineComponent({
   name: 'Home',
-  components: {
+  /*   components: {
     TerminofeuLogo,
     SanityLogo,
     NuxtLogo,
-  },
+  }, */
   async asyncData({ app: { i18n, $sanity } }) {
     const query = `*[_type == "entry"] {
 		_id,
@@ -95,5 +95,5 @@ export default {
       this.$router.push(path)
     },
   },
-}
+})
 </script>

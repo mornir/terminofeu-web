@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-gray-200">
     <div class="max-w-2xl mx-auto font-sans bg-white">
       <TheHeader />
-      <!--   <Nuxt class="py-6" /> -->
+      <!--  <router-view class="py-6" /> -->
     </div>
   </div>
 </template>
@@ -14,3 +14,13 @@ export default defineComponent({
   name: 'App',
 })
 </script>
+
+<style lang="postcss">
+body {
+  font-size: 18px;
+}
+
+.underline {
+  text-decoration-color: #dd6b20 !important;
+}
+</style>

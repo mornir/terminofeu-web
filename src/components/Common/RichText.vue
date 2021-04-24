@@ -1,11 +1,13 @@
 <template>
-  <SanityContent :blocks="blocks" :serializers="serializers" />
+  <SanityBlocks :blocks="blocks" :serializers="serializers" />
 </template>
 
 <script>
+import { SanityBlocks } from 'sanity-blocks-vue-component'
 import linkToEntry from '@/components/serializers/linkToEntry'
 
 export default {
+  components: { SanityBlocks },
   props: {
     blocks: {
       type: Array,
