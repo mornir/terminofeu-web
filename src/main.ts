@@ -3,8 +3,8 @@ import { createI18n } from 'vue-i18n'
 import App from './App.vue'
 import router from './router'
 import './assets/tailwind.css'
-import de from './locales/de.json'
-import fr from './locales/fr.json'
+import de from './locales/de'
+import fr from './locales/fr'
 
 // Ready translated locale messages
 const messages = {
@@ -21,5 +21,4 @@ const i18n = new createI18n({
 const app = createApp(App)
 app.use(i18n)
 app.use(router)
-app.use(sanity)
 app.mount('#app')
