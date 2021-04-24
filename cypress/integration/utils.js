@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import { generateTermsList } from '../../utils/utils.js'
+import { generateTermsList } from '../../terminofeu-web/src/utils/utils.js'
 
 import deTermsList from '../fixtures/deTermsList.json'
 import deTermsFormatted from '../fixtures/deTermsFormatted.json'
