@@ -1,6 +1,6 @@
 <template>
   <div class="px-8">
-    <nuxt-link to="/" class="-ml-5 text-base font-semibold">
+    <nuxt-link :to="'/' + $i18n.locale" class="-ml-5 text-base font-semibold">
       <ArrowLeft />
       {{ $t('navigation.backToIndex') }}</nuxt-link
     >
