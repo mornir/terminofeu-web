@@ -7,6 +7,12 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'Layout',
+}
+</script>
+
 <style lang="postcss">
 body {
   font-size: 18px;
