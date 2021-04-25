@@ -1,5 +1,3 @@
-// import createClient from '@sanity/client'
-
 import de from './locales/de.json'
 import fr from './locales/fr.json'
 
@@ -9,16 +7,17 @@ const sanityConfig = {
   withCredentials: true,
   minimal: true,
   useCdn: true,
+  apiVersion: '2021-04-24',
 }
 
 // const sanityClient = createClient(sanityConfig)
 
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
-  ssr: true,
+  ssr: false,
 
   // Target (https://go.nuxtjs.dev/config-target)
-  target: 'static',
+  // target: 'static',
 
   // https://nuxtjs.org/api/configuration-modern/
   modern: process.env.NODE_ENV === 'production',
@@ -56,7 +55,7 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/sanity',
+    '@nuxtjs/sanity/module',
     '@nuxtjs/google-fonts',
     'svg-to-vue-component/nuxt',
   ],
@@ -100,6 +99,10 @@ export default {
 
   sanity: {
     ...sanityConfig,
+  },
+
+  tailwindcss: {
+    jit: true,
   },
 
   googleFonts: {

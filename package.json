@@ -12,32 +12,30 @@
     "test": "cypress open"
   },
   "dependencies": {
-    "@nuxtjs/sanity": "^0.4.2",
-    "@sanity/client": "^2.1.4",
-    "core-js": "^3.8.2",
+    "@nuxtjs/sanity": "^0.9.2",
+    "core-js": "^3.11.0",
     "fuse.js": "^6.4.6",
-    "nuxt": "^2.14.12",
-    "nuxt-i18n": "^6.17.0",
+    "nuxt": "^2.15.4",
+    "nuxt-i18n": "^6.26.0",
     "sort-on": "^4.1.0",
     "vue-debounce": "^2.6.0"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^5.0.0",
+    "@nuxtjs/eslint-config": "^6.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/google-fonts": "^1.2.0",
-    "@nuxtjs/tailwindcss": "^3.4.2",
-    "autoprefixer": "9",
+    "@nuxtjs/tailwindcss": "^4.0.3",
     "babel-eslint": "^10.1.0",
-    "cypress": "^6.2.1",
-    "eslint": "^7.17.0",
-    "eslint-config-prettier": "^7.1.0",
+    "cypress": "^7.1.0",
+    "eslint": "^7.25.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-chai-friendly": "^0.6.0",
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-nuxt": "^2.0.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "postcss": "7",
+    "eslint-plugin-prettier": "^3.4.0",
+    "postcss": "^8.2.12",
     "prettier": "^2.2.1",
     "svg-to-vue-component": "^0.3.8",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+    "tailwindcss": "^2.1.2"
   }
 }

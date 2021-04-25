@@ -15,8 +15,8 @@ context('Search', () => {
   })
 
   it('navigates to first match when pressing enter', () => {
-    cy.get('#search-box').type('sc{enter}', { delay: 1000 })
-    cy.get('h1').contains('Schutzziel')
+    cy.get('#search-box').type('Brandabs{enter}', { delay: 1000 })
+    cy.get('h1').contains('Brandabschnitt')
   })
 
   it('debounces search', () => {
