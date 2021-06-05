@@ -60,13 +60,13 @@ export default {
     NuxtLogo,
   },
   async asyncData({ app: { i18n, $sanity } }) {
-    const query = `*[_type == "entry"] {
-		_id,
-    "terms": content.${i18n.locale}.terms[] {
-              _key,
-              designation,
-              abbreviation
-      }
+    const query = `*[_type == "entry" && status != "new_draft"] {
+      _id,
+      "terms": content.${i18n.locale}.terms[] {
+                _key,
+                designation,
+                abbreviation
+        }
     }
     `
     const results = await $sanity.fetch(query)
