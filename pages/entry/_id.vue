@@ -1,5 +1,5 @@
 <template>
-  <div class="px-8">
+  <div class="px-8 pb-16">
     <nuxt-link :to="'/' + $i18n.locale" class="-ml-5 text-base font-semibold">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +16,7 @@
       {{ $t('navigation.backToIndex') }}</nuxt-link
     >
 
-    <article class="mt-8">
+    <section class="mt-8">
       <div class="flex">
         <Heading1>
           {{ entry.content[$i18n.locale].terms[0].designation }}
@@ -25,22 +25,41 @@
       </div>
 
       <RichText
-        v-if="entry.content[$i18n.locale].definitions[0].definition"
-        :blocks="entry.content[$i18n.locale].definitions[0].definition"
+        v-if="entry.content[$i18n.locale].definition"
+        :blocks="entry.content[$i18n.locale].definition"
         class="-mt-2"
       />
+    </section>
 
-      <section
-        v-if="entry.content[$i18n.locale].terms[0].abbreviation"
-        class="mt-8"
+    <section
+      v-if="entry.content[$i18n.locale].terms[0].abbreviation"
+      class="mt-8"
+    >
+      <Heading2>{{ $t('entry.abbreviation') }}</Heading2>
+      <span class="font-bold">{{
+        entry.content[$i18n.locale].terms[0].abbreviation
+      }}</span>
+    </section>
+
+    <section class="mt-12">
+      <Heading2 class="-mb-4"
+        >Definitionen aus bestehenden Regelwerken</Heading2
       >
-        <Heading2>{{ $t('entry.abbreviation') }}</Heading2>
-        <span class="font-bold">{{
-          entry.content[$i18n.locale].terms[0].abbreviation
-        }}</span>
-      </section>
 
-      <!--
+      <div
+        v-for="definition in entry.content[$i18n.locale].definitions"
+        :key="definition._key"
+        class="mt-6"
+      >
+        <RichText
+          :blocks="definition.definition"
+          class="text-base leading-snug"
+        />
+        <p class="mt-1 text-xs italic">{{ definition.source.title }}</p>
+      </div>
+    </section>
+
+    <!--
       <section v-if="entry.alternativeTerms.length > 0" class="mt-8">
         <Heading2>{{ $t('entry.alternativeTerms') }}</Heading2>
         <ul>
@@ -54,7 +73,7 @@
         </ul>
       </section> -->
 
-      <!--     <section v-if="entry.relatedEntries.length > 0" class="mt-8">
+    <!--     <section v-if="entry.relatedEntries.length > 0" class="mt-8">
         <Heading2>{{ $t('entry.relatedTerms') }}</Heading2>
         <ul>
           <li
@@ -68,16 +87,31 @@
           </li>
         </ul>
       </section> -->
-    </article>
   </div>
 </template>
 
 <script>
-const query = /* groq */ `{ "entry": *[_type == "entry" && _id == $id][0]}`
-
 export default {
   name: 'EntryDetails',
-  asyncData({ $sanity, params }) {
+  asyncData({ params, app: { i18n, $sanity } }) {
+    const query = /* groq */ `{ "entry": *[_type == "entry" && _id == $id][0]
+    {
+      _id,
+      content {
+      ${i18n.locale} {
+        ...,
+        definitions[] {
+          ...,
+          source-> {
+            title
+          }
+        }
+
+      }
+     }
+    }
+  }`
+
     return $sanity.fetch(query, {
       id: params.id,
     })

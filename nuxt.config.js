@@ -100,11 +100,6 @@ export default {
   sanity: {
     ...sanityConfig,
   },
-
-  tailwindcss: {
-    jit: true,
-  },
-
   googleFonts: {
     families: {
       Nunito: [400, 600, 700],

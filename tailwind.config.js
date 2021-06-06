@@ -1,6 +1,7 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
+  mode: 'jit',
   darkMode: false,
   theme: {
     fontFamily: {
@@ -13,21 +14,14 @@ module.exports = {
         'sans-serif',
       ],
     },
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-
-      black: '#000',
-      white: '#fff',
-
-      primary: '#F97316',
-      'primary-alt': '#c05621',
-      'primary-light': '#f3cbb1',
-
-      gray: colors.warmGray,
-      orange: colors.orange,
+    extend: {
+      colors: {
+        primary: '#F97316',
+        'primary-alt': '#c05621',
+        'primary-light': '#f3cbb1',
+        gray: colors.warmGray,
+        orange: colors.orange,
+      },
     },
-    extend: {},
   },
-  variants: {},
 }
