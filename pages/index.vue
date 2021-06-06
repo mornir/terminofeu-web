@@ -14,7 +14,11 @@
       />
       <div class="px-8">
         <ul v-if="hasMatches" data-cy="terms-list">
-          <li v-for="entry in entries" :key="entry.key" class="mb-2">
+          <li
+            v-for="entry in entries"
+            :key="entry.key"
+            class="flex items-center mb-2 gap-x-2"
+          >
             <router-link
               :to="
                 localePath({ name: 'entry-id', params: { id: entry.entry_id } })
@@ -22,6 +26,11 @@
               class="font-semibold hover:text-primary"
               >{{ entry.term }}
             </router-link>
+            <span
+              v-if="entry.status === 'definition'"
+              class="px-2 py-1 text-xs font-semibold tracking-wide text-white bg-yellow-700 rounded-full"
+              >neue Definition</span
+            >
           </li>
         </ul>
         <p v-else>{{ $t('noResults') }}</p>
@@ -62,6 +71,7 @@ export default {
   async asyncData({ app: { i18n, $sanity } }) {
     const query = `*[_type == "entry" && status != "new_draft"] {
       _id,
+      status,
       "terms": content.${i18n.locale}.terms[] {
                 _key,
                 designation,
@@ -71,6 +81,7 @@ export default {
     `
     const results = await $sanity.fetch(query)
     const formattedEntries = generateTermsList(results)
+    console.log(formattedEntries)
     const entries = sortOn(formattedEntries, 'term')
     return {
       entries,

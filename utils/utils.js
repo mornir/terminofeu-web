@@ -9,6 +9,7 @@ function generateTermsList(entries = []) {
           key: 't_' + term._key,
           entry_id: entry._id,
           term: term.designation,
+          status: entry.status,
         },
       ]
       if (term.abbreviation) {
@@ -16,6 +17,7 @@ function generateTermsList(entries = []) {
           key: 'a_' + term._key,
           entry_id: entry._id,
           term: term.abbreviation,
+          status: entry.status,
         })
       }
       return designations
