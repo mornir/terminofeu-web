@@ -35,6 +35,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "nuxt-svg-loader": "^1.2.0",
     "postcss": "^8.3.5",
-    "prettier": "^2.3.2"
+    "prettier": "2.2.1"
   }
 }
