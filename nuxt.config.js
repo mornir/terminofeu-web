@@ -57,7 +57,7 @@ export default {
     '@nuxtjs/tailwindcss',
     '@nuxtjs/sanity/module',
     '@nuxtjs/google-fonts',
-    'svg-to-vue-component/nuxt',
+    'nuxt-svg-loader',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -99,6 +99,12 @@ export default {
 
   sanity: {
     ...sanityConfig,
+    additionalClients: {
+      ppi: {
+        projectId: '79yex6i5',
+        withCredentials: false,
+      },
+    },
   },
   googleFonts: {
     families: {
