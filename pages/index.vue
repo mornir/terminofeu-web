@@ -69,7 +69,7 @@ export default {
     NuxtLogo,
   },
   async asyncData({ app: { i18n, $sanity } }) {
-    const query = `*[_type == "entry" && status != "new_draft"] {
+    const query = `*[_type == "entry" && status in ["definition", "approved", "validated", "in_force"]] {
       _id,
       status,
       "terms": content.${i18n.locale}.terms[] {
