@@ -1,9 +1,10 @@
 <template>
   <div class="min-h-screen bg-gray-200">
     <div class="max-w-2xl mx-auto font-sans bg-white">
-      <Banner>Alle Inhalte sind noch in der Bearbeitung.</Banner>
+      <Banner>{{ $t('stickyBanner') }}</Banner>
       <TheHeader />
       <Nuxt class="py-6" />
+      <TheFooter />
     </div>
   </div>
 </template>
