@@ -36,19 +36,6 @@
         <p v-else>{{ $t('noResults') }}</p>
       </div>
     </section>
-
-    <section class="px-8 mt-12">
-      <Heading2>{{ $t('builtWith') }}</Heading2>
-
-      <div class="flex items-end gap-x-8">
-        <a href="https://www.sanity.io/" target="_blank">
-          <SanityLogo class="w-28" />
-        </a>
-        <a href="https://nuxtjs.org/" target="_blank">
-          <NuxtLogo class="w-28" />
-        </a>
-      </div>
-    </section>
   </div>
 </template>
 
@@ -56,8 +43,6 @@
 import sortOn from 'sort-on'
 
 import TerminofeuLogo from '@/assets/logos/terminofeu.svg'
-import SanityLogo from '@/assets/logos/sanity.svg'
-import NuxtLogo from '@/assets/logos/nuxt.svg'
 
 import { generateTermsList } from '@/utils/utils.js'
 
@@ -65,8 +50,6 @@ export default {
   name: 'Home',
   components: {
     TerminofeuLogo,
-    SanityLogo,
-    NuxtLogo,
   },
   async asyncData({ app: { i18n, $sanity } }) {
     const query = `*[_type == "entry" && status in ["definition", "approved", "validated", "in_force"]] {
