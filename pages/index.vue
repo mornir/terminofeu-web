@@ -26,11 +26,11 @@
               class="font-semibold hover:text-primary"
               >{{ entry.term }}
             </router-link>
-            <span
+            <!--    <span
               v-if="entry.status === 'definition'"
               class="px-2 py-1 text-xs font-semibold tracking-wide text-white bg-yellow-700 rounded-full"
               >neue Definition</span
-            >
+            > -->
           </li>
         </ul>
         <p v-else>{{ $t('noResults') }}</p>
