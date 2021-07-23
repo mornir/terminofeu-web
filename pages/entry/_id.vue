@@ -58,7 +58,7 @@
         <RichText
           v-if="entry.content[$i18n.locale].note"
           :blocks="entry.content[$i18n.locale].note"
-          class="-mt-2 italic"
+          class="-mt-2 text-base italic"
         />
       </section>
 
@@ -72,10 +72,10 @@
         }}</span>
       </section>
 
-      <section class="mt-12">
-        <Heading2 class="-mb-4"
-          >Definitionen aus bestehenden Regelwerken</Heading2
-        >
+      <section v-if="entry.content[$i18n.locale].definitions" class="mt-12">
+        <Heading2 class="-mb-4">{{
+          $t('entry.thirdPartyDefinitions')
+        }}</Heading2>
 
         <div
           v-for="definition in entry.content[$i18n.locale].definitions"
@@ -143,7 +143,6 @@ export default {
      }
     }
   }`
-
     return $sanity.fetch(query, {
       id: params.id,
     })

@@ -10,7 +10,8 @@
     "abbreviation": "Abréviation",
     "source": "Source",
     "noSource": "Aucune source",
-    "notice": "Remarques"
+    "notice": "Remarques",
+    "thirdPartyDefinitions": "Définitions issues d'autres sources de références"
   },
   "navigation": {
     "backToIndex": "Index",
