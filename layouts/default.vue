@@ -23,4 +23,13 @@ body {
 .underline {
   text-decoration-color: #dd6b20 !important;
 }
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.3s ease-in-out;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
 </style>
