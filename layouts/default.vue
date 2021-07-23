@@ -1,8 +1,10 @@
 <template>
   <div class="min-h-screen bg-gray-200">
     <div class="max-w-2xl mx-auto font-sans bg-white">
+      <Banner>{{ $t('stickyBanner') }}</Banner>
       <TheHeader />
       <Nuxt class="py-6" />
+      <TheFooter />
     </div>
   </div>
 </template>
@@ -20,5 +22,14 @@ body {
 
 .underline {
   text-decoration-color: #dd6b20 !important;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.3s ease-in-out;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
 }
 </style>

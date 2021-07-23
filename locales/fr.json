@@ -3,13 +3,15 @@
   "searchTerm": "Rechercher un terme",
   "noResults": "Aucun résultat trouvé",
   "builtWith": "Développé avec",
+  "stickyBanner": "Le contenu de ce site est en cours d'élaboration.",
   "entry": {
     "relatedTerms": "Termes apparentés",
     "alternativeTerms": "Variantes",
     "abbreviation": "Abréviation",
     "source": "Source",
     "noSource": "Aucune source",
-    "notice": "Remarques"
+    "notice": "Remarques",
+    "thirdPartyDefinitions": "Définitions issues d'autres sources de références"
   },
   "navigation": {
     "backToIndex": "Index",
