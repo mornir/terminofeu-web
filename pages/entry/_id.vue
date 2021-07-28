@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen px-8 pb-16">
+  <div class="min-h-screen px-8 pt-6 pb-16">
     <div v-if="entry.content[$i18n.locale]">
       <nuxt-link :to="'/' + $i18n.locale" class="-ml-5 text-base font-semibold">
         <svg
@@ -17,15 +17,26 @@
         {{ $t('navigation.backToIndex') }}</nuxt-link
       >
 
-      <section class="mt-8">
-        <div class="flex mb-2">
+      <section class="mt-12">
+        <div class="mb-4">
           <Heading1>
             {{ entry.content[$i18n.locale].terms[0].designation }}
           </Heading1>
-          <!-- <ZoomLink :id="entry._id" class="mt-1 ml-2" /> -->
+
+          <ul>
+            <li
+              v-for="term in entry.content[$i18n.locale].terms"
+              :key="term._key"
+              class="text-xl font-semibold lg:text-2xl first:hidden"
+            >
+              {{ term.designation }}
+            </li>
+          </ul>
         </div>
 
-        <div class="flex items-center mb-3 gap-x-2">
+        <div
+          class="flex items-center px-2 py-1 mb-3 text-gray-800 bg-orange-300 gap-x-2"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="w-6 h-6"
@@ -40,7 +51,7 @@
               d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
             />
           </svg>
-          <p v-if="$i18n.locale === 'de'" class="text-base italic">
+          <p v-if="$i18n.locale === 'de'" class="text-sm italic lg:text-base">
             <span class="font-semibold">Entwurf Definition</span>: sie ist nocht
             nicht vom Kernauschuss genehmight.
           </p>
@@ -58,7 +69,7 @@
         <RichText
           v-if="entry.content[$i18n.locale].note"
           :blocks="entry.content[$i18n.locale].note"
-          class="-mt-2 text-base italic"
+          class="text-base italic"
         />
       </section>
 
@@ -146,6 +157,20 @@ export default {
     return $sanity.fetch(query, {
       id: params.id,
     })
+  },
+  head() {
+    return {
+      title:
+        this.entry.content[this.$i18n.locale]?.terms?.[0].designation ?? '',
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'My custom description',
+        },
+      ],
+    }
   },
 }
 </script>
