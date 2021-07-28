@@ -1,3 +1,3 @@
 <template functional>
-  <h2 class="mb-2 text-xl font-semibold text-gray-700"><slot /></h2>
+  <h2 class="mb-2 text-lg font-semibold text-gray-700 lg:text-xl"><slot /></h2>
 </template>

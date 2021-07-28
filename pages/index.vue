@@ -75,6 +75,11 @@ export default {
       hasMatches: true,
     }
   },
+  head() {
+    return {
+      title: this.$t('searchTerm'),
+    }
+  },
   methods: {
     displayResults(results) {
       this.hasMatches = results.length > 0

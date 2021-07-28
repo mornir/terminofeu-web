@@ -50,10 +50,10 @@ export default {
     })
     this.localArray = this.searchArray
   },
-  mounted() {
+  /*   mounted() {
     const searchBox = document.getElementById('search-box')
     searchBox.focus()
-  },
+  }, */
   methods: {
     search(query) {
       if (!query.trim()) {
