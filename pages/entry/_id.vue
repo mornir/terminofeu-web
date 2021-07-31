@@ -188,7 +188,7 @@ export default {
     let nextEntry = null
 
     if (index !== -1) {
-      if (previousEntryIndex > 0) {
+      if (previousEntryIndex >= 0) {
         previousEntry = sortedTermList[previousEntryIndex]
       }
 
