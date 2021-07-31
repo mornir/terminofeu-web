@@ -1,25 +1,72 @@
 <template>
-  <div class="min-h-screen px-8 pt-6 pb-16">
-    <div v-if="entry.content[$i18n.locale]">
-      <nuxt-link :to="'/' + $i18n.locale" class="-ml-5 text-base font-semibold">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          class="inline-block h-6 stroke-current stroke-2 text-primary"
+  <div class="min-h-screen px-4 pt-6 pb-16 sm:px-8">
+    <div v-if="entry && entry.content[$i18n.locale]">
+      <header>
+        <nuxt-link
+          :to="'/' + $i18n.locale"
+          class="inline-block mb-6 text-base font-semibold"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M10 19l-7-7m0 0l7-7m-7 7h18"
-          />
-        </svg>
-        {{ $t('navigation.backToIndex') }}</nuxt-link
-      >
+          <!--  <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="inline-block h-6 stroke-current stroke-2 text-primary"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg> -->
+          {{ $t('navigation.backToIndex') }}</nuxt-link
+        >
 
-      <section class="mt-12">
-        <div class="mb-6">
-          <Heading1>
+        <nav class="flex justify-between text-sm">
+          <nuxt-link
+            v-if="previousEntry"
+            :to="
+              localePath({
+                name: 'entry-id',
+                params: { id: previousEntry._id },
+              })
+            "
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="inline w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z"
+                clip-rule="evenodd"
+              /></svg
+            >{{ previousEntry.title }}</nuxt-link
+          >
+
+          <nuxt-link
+            v-if="nextEntry"
+            :to="
+              localePath({ name: 'entry-id', params: { id: nextEntry._id } })
+            "
+            >{{ nextEntry.title
+            }}<svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="inline w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              /></svg
+          ></nuxt-link>
+        </nav>
+      </header>
+      <section class="mt-8">
+        <div class="mb-4 md:mb-6">
+          <Heading1 v-if="entry.content[$i18n.locale].terms">
             {{ entry.content[$i18n.locale].terms[0].designation }}
             <span v-if="entry.content[$i18n.locale].terms[0].abbreviation"
               >({{ entry.content[$i18n.locale].terms[0].abbreviation }})</span
@@ -43,7 +90,7 @@
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="w-6 h-6"
+            class="hidden w-6 h-6 md:inline"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -59,8 +106,12 @@
             <span class="font-semibold">Entwurf Definition</span>: sie ist nocht
             nicht vom Kernauschuss genehmight.
           </p>
-          <p v-if="$i18n.locale === 'fr'" class="italic">
-            La traduction sera publiée en automne 2021.
+
+          <p
+            v-if="!entry.content[$i18n.locale].definition"
+            class="text-sm italic lg:text-base"
+          >
+            La traduction sera publiée sous peu.
           </p>
         </div>
 
@@ -99,9 +150,10 @@
 </template>
 
 <script>
+import sortOn from 'sort-on'
 export default {
   name: 'EntryDetails',
-  asyncData({ params, app: { i18n, $sanity } }) {
+  async asyncData({ params, app: { i18n, $sanity } }) {
     const query = /* groq */ `{ "entry": *[_type == "entry" && _id == $id][0]
     {
       _id,
@@ -117,11 +169,39 @@ export default {
 
       }
      }
-    }
+    },
+    "termsList": *[_type == "entry" && status in ["definition", "approved", "validated", "in_force"]] { _id, "title": ${i18n.locale}Title}
   }`
-    return $sanity.fetch(query, {
+
+    const { entry, termsList } = await $sanity.fetch(query, {
       id: params.id,
     })
+
+    const sortedTermList = sortOn(termsList, 'title')
+
+    const index = sortedTermList.findIndex((term) => term._id === entry._id)
+
+    const previousEntryIndex = index - 1
+    const nextEntryIndex = index + 1
+
+    let previousEntry = null
+    let nextEntry = null
+
+    if (index !== -1) {
+      if (previousEntryIndex > 0) {
+        previousEntry = sortedTermList[previousEntryIndex]
+      }
+
+      if (nextEntryIndex <= sortedTermList.length - 1) {
+        nextEntry = sortedTermList[nextEntryIndex]
+      }
+    }
+
+    return {
+      entry,
+      previousEntry,
+      nextEntry,
+    }
   },
   head() {
     return {
