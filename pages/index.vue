@@ -64,7 +64,6 @@ export default {
     `
     const results = await $sanity.fetch(query)
     const formattedEntries = generateTermsList(results)
-    console.log(formattedEntries)
     const entries = sortOn(formattedEntries, 'term')
     return {
       entries,
