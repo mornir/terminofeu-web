@@ -21,7 +21,7 @@
           {{ $t('navigation.backToIndex') }}</nuxt-link
         >
 
-        <nav class="flex justify-between text-sm">
+        <nav class="grid grid-cols-2 text-sm">
           <nuxt-link
             v-if="previousEntry"
             :to="
@@ -46,6 +46,7 @@
 
           <nuxt-link
             v-if="nextEntry"
+            class="col-start-2 justify-self-end"
             :to="
               localePath({ name: 'entry-id', params: { id: nextEntry._id } })
             "
