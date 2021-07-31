@@ -207,14 +207,14 @@ export default {
     return {
       title:
         this.entry.content[this.$i18n.locale]?.terms?.[0].designation ?? '',
-      meta: [
+      /*   meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
           hid: 'description',
           name: 'description',
           content: 'My custom description',
         },
-      ],
+      ], */
     }
   },
 }
