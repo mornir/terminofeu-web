@@ -1,16 +1,7 @@
 <template functional>
-  <h1 class="relative mb-2 text-2xl font-bold leading-normal lg:text-3xl">
+  <h1
+    class="relative text-2xl font-bold leading-normal sm:pl-2 sm:-ml-4 sm:border-l-8 lg:text-3xl sm:border-primary"
+  >
     <slot />
   </h1>
 </template>
-
-<style lang="postcss" scoped>
-h1::before {
-  content: '';
-  @apply bg-primary absolute;
-  position: absolute;
-  left: -16px;
-  height: 35px;
-  width: 9px;
-}
-</style>

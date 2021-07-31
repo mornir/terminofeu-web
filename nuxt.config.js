@@ -69,7 +69,7 @@ export default {
     locales: [
       { code: 'de', iso: 'de-CH', name: 'Deutsch' },
       { code: 'fr', iso: 'fr-CH', name: 'Français' },
-      { code: 'it', iso: 'it-CH', name: 'Italiano' },
+      /* { code: 'it', iso: 'it-CH', name: 'Italiano' }, */
     ],
     defaultLocale: 'de',
     vueI18n: {
