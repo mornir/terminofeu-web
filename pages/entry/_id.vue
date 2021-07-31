@@ -21,7 +21,7 @@
           {{ $t('navigation.backToIndex') }}</nuxt-link
         >
 
-        <nav class="grid grid-cols-2 text-sm">
+        <nav class="grid grid-cols-2 text-xs sm:text-sm">
           <nuxt-link
             v-if="previousEntry"
             :to="
