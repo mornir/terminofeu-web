@@ -18,9 +18,12 @@
       >
 
       <section class="mt-12">
-        <div class="mb-4">
+        <div class="mb-6">
           <Heading1>
             {{ entry.content[$i18n.locale].terms[0].designation }}
+            <span v-if="entry.content[$i18n.locale].terms[0].abbreviation"
+              >({{ entry.content[$i18n.locale].terms[0].abbreviation }})</span
+            >
           </Heading1>
 
           <ul>
@@ -30,6 +33,7 @@
               class="text-xl font-semibold lg:text-2xl first:hidden"
             >
               {{ term.designation }}
+              <span v-if="term.abbreviation">({{ term.abbreviation }})</span>
             </li>
           </ul>
         </div>
@@ -73,16 +77,6 @@
         />
       </section>
 
-      <section
-        v-if="entry.content[$i18n.locale].terms[0].abbreviation"
-        class="mt-8"
-      >
-        <Heading2>{{ $t('entry.abbreviation') }}</Heading2>
-        <span class="font-bold">{{
-          entry.content[$i18n.locale].terms[0].abbreviation
-        }}</span>
-      </section>
-
       <section v-if="entry.content[$i18n.locale].definitions" class="mt-12">
         <Heading2 class="-mb-4">{{
           $t('entry.thirdPartyDefinitions')
@@ -100,35 +94,6 @@
           <p class="mt-1 text-xs italic">{{ definition.source.title }}</p>
         </div>
       </section>
-
-      <!--
-      <section v-if="entry.alternativeTerms.length > 0" class="mt-8">
-        <Heading2>{{ $t('entry.alternativeTerms') }}</Heading2>
-        <ul>
-          <li
-            v-for="alternative in entry.alternativeTerms"
-            :key="alternative._id"
-            class="font-semibold"
-          >
-            {{ alternative.term }}
-          </li>
-        </ul>
-      </section> -->
-
-      <!--     <section v-if="entry.relatedEntries.length > 0" class="mt-8">
-        <Heading2>{{ $t('entry.relatedTerms') }}</Heading2>
-        <ul>
-          <li
-            v-for="fiche in entry.relatedEntries"
-            :key="fiche._id"
-            class="font-semibold"
-          >
-            <nuxt-link v-if="fiche.relatedEntry" :to="`/entry/${fiche._id}/`"
-              >{{ fiche.relatedEntry.term.designation }} <ArrowRight
-            /></nuxt-link>
-          </li>
-        </ul>
-      </section> -->
     </div>
   </div>
 </template>
