@@ -87,7 +87,8 @@
         </div>
 
         <div
-          class="flex items-center px-2 py-1 mb-3 text-gray-800 bg-orange-300 gap-x-2"
+          class="flex items-center px-4 py-1 mb-3 text-gray-800 bg-orange-300 gap-x-2"
+          style="width: fit-content"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -103,14 +104,16 @@
               d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
             />
           </svg>
-          <p v-if="$i18n.locale === 'de'" class="text-sm italic lg:text-base">
-            <span class="font-semibold">Entwurf Definition</span>: sie ist nocht
-            nicht vom Kernauschuss genehmight.
+          <p
+            v-if="$i18n.locale === 'de'"
+            class="text-sm font-semibold lg:text-base"
+          >
+            Entwurf Definition für BSV 2026
           </p>
 
           <p
             v-if="!entry.content[$i18n.locale].definition"
-            class="text-sm italic lg:text-base"
+            class="text-sm lg:text-base"
           >
             La traduction sera publiée sous peu.
           </p>
@@ -129,7 +132,7 @@
         />
       </section>
 
-      <section v-if="entry.content[$i18n.locale].definitions" class="mt-12">
+      <!-- <section v-if="entry.content[$i18n.locale].definitions" class="mt-12">
         <Heading2 class="-mb-4">{{
           $t('entry.thirdPartyDefinitions')
         }}</Heading2>
@@ -145,7 +148,7 @@
           />
           <p class="mt-1 text-xs italic">{{ definition.source.title }}</p>
         </div>
-      </section>
+      </section> -->
     </div>
   </div>
 </template>
