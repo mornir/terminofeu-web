@@ -22,6 +22,15 @@ module.exports = {
         gray: colors.warmGray,
         orange: colors.orange,
       },
+      animation: {
+        exit: 'exit 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      },
+      keyframes: {
+        exit: {
+          '0%, 100%': { color: '#c05621' },
+          '50%': { color: '#F97316' },
+        },
+      },
     },
   },
 }

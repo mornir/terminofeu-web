@@ -19,13 +19,13 @@
             :key="entry.key"
             class="flex items-center mb-2 gap-x-2"
           >
-            <router-link
+            <NuxtLink
               :to="
                 localePath({ name: 'entry-id', params: { id: entry.entry_id } })
               "
               class="font-semibold hover:text-primary"
               >{{ entry.term }}
-            </router-link>
+            </NuxtLink>
             <!--    <span
               v-if="entry.status === 'definition'"
               class="px-2 py-1 text-xs font-semibold tracking-wide text-white bg-yellow-700 rounded-full"

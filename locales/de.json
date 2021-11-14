@@ -4,6 +4,9 @@
   "searchTerm": "Begriff suchen",
   "noResults": "Keine Ergebnisse gefunden",
   "builtWith": "Entwickelt mit",
+  "notFound": "Seite nicht gefunden",
+  "notFoundMessage": "Die Seite existiert nicht oder wurde gelöscht.",
+  "errorMessage": "Hoppla! Da ist etwas schief gelaufen...",
   "stickyBanner": "Alle Inhalte sind noch in der Bearbeitung.",
   "entry": {
     "relatedTerms": "Verwandte Einträge",
@@ -12,7 +15,7 @@
     "source": "Quelle",
     "noSource": "Keine Quelle",
     "notice": "Anmerkungen",
-    "thirdPartyDefinitions": "Definitionen aus bestehenden Regelwerken"
+    "draftDefinition": "Entwurf Definition für BSV 2026"
   },
   "navigation": {
     "backToIndex": "Zum Verzeichnis",

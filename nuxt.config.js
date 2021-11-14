@@ -17,7 +17,7 @@ export default {
   ssr: false,
 
   // Target (https://go.nuxtjs.dev/config-target)
-  // target: 'static',
+  target: 'static',
 
   // https://nuxtjs.org/api/configuration-modern/
   modern: process.env.NODE_ENV === 'production',
