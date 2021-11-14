@@ -24,6 +24,7 @@
         <nav class="grid grid-cols-2 text-xs sm:text-sm">
           <nuxt-link
             v-if="previousEntry"
+            class="justify-self-start"
             :to="
               localePath({
                 name: 'entry-id',
