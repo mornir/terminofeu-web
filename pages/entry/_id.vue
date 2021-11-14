@@ -2,7 +2,7 @@
   <div class="min-h-screen px-4 pt-6 pb-16 sm:px-8">
     <div v-if="entry && entry.content[$i18n.locale]">
       <header>
-        <nuxt-link
+        <NuxtLink
           :to="'/' + $i18n.locale"
           class="inline-block mb-6 text-base font-semibold"
         >
@@ -18,11 +18,11 @@
               d="M10 19l-7-7m0 0l7-7m-7 7h18"
             />
           </svg> -->
-          {{ $t('navigation.backToIndex') }}</nuxt-link
+          {{ $t('navigation.backToIndex') }}</NuxtLink
         >
 
         <nav class="grid grid-cols-2 text-xs sm:text-sm">
-          <nuxt-link
+          <NuxtLink
             v-if="previousEntry"
             class="justify-self-start"
             :to="
@@ -42,10 +42,10 @@
                 d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z"
                 clip-rule="evenodd"
               /></svg
-            >{{ previousEntry.title }}</nuxt-link
+            >{{ previousEntry.title }}</NuxtLink
           >
 
-          <nuxt-link
+          <NuxtLink
             v-if="nextEntry"
             class="col-start-2 justify-self-end"
             :to="
@@ -63,7 +63,7 @@
                 d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
                 clip-rule="evenodd"
               /></svg
-          ></nuxt-link>
+          ></NuxtLink>
         </nav>
       </header>
       <section class="mt-8">

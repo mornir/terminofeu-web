@@ -4,6 +4,9 @@
   "searchTerm": "Rechercher un terme",
   "noResults": "Aucun résultat trouvé",
   "builtWith": "Développé avec",
+  "notFound": "Page introuvable",
+  "notFoundMessage": "La page n'existe pas ou a été supprimée. Cliquez sur EXIT pour revenir à la page d'accueil.",
+  "errorMessage": "Hoppla! Da ist etwas schief gelaufen...",
   "stickyBanner": "Le contenu de ce site est en cours d'élaboration.",
   "entry": {
     "relatedTerms": "Termes apparentés",
