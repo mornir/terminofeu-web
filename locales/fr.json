@@ -12,7 +12,8 @@
     "source": "Source",
     "noSource": "Aucune source",
     "notice": "Remarques",
-    "thirdPartyDefinitions": "Définitions issues d'autres sources de références"
+    "thirdPartyDefinitions": "Définitions issues d'autres sources de références",
+    "draftDefinition": "Ébauche de définition pour les PPI 2026"
   },
   "navigation": {
     "backToIndex": "Retour à l'index",

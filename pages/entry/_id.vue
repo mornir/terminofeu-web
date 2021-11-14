@@ -106,16 +106,13 @@
             />
           </svg>
           <p
-            v-if="$i18n.locale === 'de'"
+            v-if="entry.content[$i18n.locale].definition"
             class="text-sm font-semibold lg:text-base"
           >
-            Entwurf Definition für BSV 2026
+            {{ $t('entry.draftDefinition') }}
           </p>
 
-          <p
-            v-if="!entry.content[$i18n.locale].definition"
-            class="text-sm lg:text-base"
-          >
+          <p v-else class="text-sm font-semibold lg:text-base">
             La traduction sera publiée sous peu.
           </p>
         </div>

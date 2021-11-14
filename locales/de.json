@@ -12,7 +12,8 @@
     "source": "Quelle",
     "noSource": "Keine Quelle",
     "notice": "Anmerkungen",
-    "thirdPartyDefinitions": "Definitionen aus bestehenden Regelwerken"
+    "thirdPartyDefinitions": "Definitionen aus bestehenden Regelwerken",
+    "draftDefinition": "Entwurf Definition für BSV 2026"
   },
   "navigation": {
     "backToIndex": "Zum Verzeichnis",
