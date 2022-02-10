@@ -5,7 +5,7 @@
   "noResults": "Aucun résultat trouvé",
   "builtWith": "Développé avec",
   "notFound": "Page introuvable",
-  "notFoundMessage": "La page n'existe pas ou a été supprimée. Cliquez sur EXIT pour revenir à la page d'accueil.",
+  "notFoundMessage": "La page rechercée n'existe pas ou plus. Cliquez sur EXIT pour revenir à l'index.",
   "errorMessage": "Hoppla! Da ist etwas schief gelaufen...",
   "stickyBanner": "Le contenu de ce site est en cours d'élaboration.",
   "entry": {
