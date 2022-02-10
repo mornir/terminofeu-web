@@ -52,7 +52,7 @@ export default {
     TerminofeuLogo,
   },
   async asyncData({ app: { i18n, $sanity } }) {
-    const query = `*[_type == "entry" && status in ["definition", "approved", "validated", "in_force"]] {
+    const query = `*[_type == "entry" && status in ["approved", "validated", "in_force"]] {
       _id,
       status,
       "terms": content.${i18n.locale}.terms[] {
