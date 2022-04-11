@@ -1,8 +1,6 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  mode: 'jit',
-  darkMode: false,
   theme: {
     fontFamily: {
       sans: [
@@ -19,7 +17,7 @@ module.exports = {
         primary: '#F97316',
         'primary-alt': '#c05621',
         'primary-light': '#f3cbb1',
-        gray: colors.warmGray,
+        gray: colors.stone,
         orange: colors.orange,
       },
       animation: {
