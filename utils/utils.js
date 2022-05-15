@@ -10,7 +10,7 @@ function generateTermsList(entries = []) {
             key: 't_' + term._key,
             entry_id: entry._id,
             term: term.designation,
-            status: entry.status,
+            status: term.status,
           },
         ]
         if (term.abbreviation) {
@@ -18,14 +18,13 @@ function generateTermsList(entries = []) {
             key: 'a_' + term._key,
             entry_id: entry._id,
             term: term.abbreviation,
-            status: entry.status,
+            status: term.status,
           })
         }
-        console.table(designations)
         return designations
       })
     })
-    .filter((t) => t.status !== 'avoid' || t.status !== 'to_be_defined')
+    .filter((t) => t.status !== 'avoid' && t.status !== 'to_be_defined')
 }
 
 export { generateTermsList }

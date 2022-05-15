@@ -54,11 +54,11 @@ export default {
   async asyncData({ i18n }) {
     const query = `*[_type == "entry" && status in ["approved", "validated", "in_force"]] {
       _id,
-      status,
       "terms": content.${i18n.locale}.terms[] {
                 _key,
                 designation,
-                abbreviation
+                abbreviation,
+                status
         }
     }
     `
