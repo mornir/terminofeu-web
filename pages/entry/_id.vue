@@ -88,7 +88,7 @@
         </div>
 
         <div
-          class="flex items-center px-4 py-1 mb-3 text-gray-800 bg-orange-300 gap-x-2"
+          class="flex items-center px-4 py-1 mb-3 text-gray-800 bg-orange-300"
           style="width: fit-content"
         >
           <svg
@@ -117,13 +117,13 @@
           </p>
         </div>
 
-        <RichText
+        <BlockContent
           v-if="entry.content[$i18n.locale].definition"
           :blocks="entry.content[$i18n.locale].definition"
           class="mb-6"
         />
 
-        <RichText
+        <BlockContent
           v-if="entry.content[$i18n.locale].note"
           :blocks="entry.content[$i18n.locale].note"
           class="text-base italic"
@@ -153,9 +153,15 @@
 
 <script>
 import sortOn from 'sort-on'
+import BlockContent from 'sanity-blocks-vue-component'
+import sanity from '@/sanity.js'
+
 export default {
   name: 'EntryDetails',
-  async asyncData({ params, app: { i18n, $sanity } }) {
+  components: {
+    BlockContent,
+  },
+  async asyncData({ params, i18n }) {
     const query = /* groq */ `{ "entry": *[_type == "entry" && _id == $id][0]
     {
       _id,
@@ -172,10 +178,10 @@ export default {
       }
      }
     },
-    "termsList": *[_type == "entry" && status in ["definition", "approved", "validated", "in_force"]] { _id, "title": ${i18n.locale}Title}
+    "termsList": *[_type == "entry" && status in ["approved", "validated", "in_force"]] { _id, "title": ${i18n.locale}Title}
   }`
 
-    const { entry, termsList } = await $sanity.fetch(query, {
+    const { entry, termsList } = await sanity.fetch(query, {
       id: params.id,
     })
 

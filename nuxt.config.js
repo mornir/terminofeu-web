@@ -1,17 +1,6 @@
 import de from './locales/de.json'
 import fr from './locales/fr.json'
 
-const sanityConfig = {
-  projectId: 'nipfx4rq',
-  dataset: 'production',
-  withCredentials: true,
-  minimal: true,
-  useCdn: true,
-  apiVersion: '2021-04-24',
-}
-
-// const sanityClient = createClient(sanityConfig)
-
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
@@ -53,10 +42,9 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module',
+    ['@nuxtjs/eslint-module', { cache: false }],
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/sanity/module',
     '@nuxtjs/google-fonts',
     'nuxt-svg-loader',
   ],
@@ -88,24 +76,6 @@ export default {
   generate: {
     fallback: true,
     crawler: false,
-    /*    routes: () => {
-      return sanityClient
-        .fetch(`[_type == 'entry']`)
-        .then((entry) => {
-          return [entry]
-        })
-        .catch((e) => console.error(e))
-    }, */
-  },
-
-  sanity: {
-    ...sanityConfig,
-    additionalClients: {
-      ppi: {
-        projectId: '79yex6i5',
-        withCredentials: false,
-      },
-    },
   },
   googleFonts: {
     families: {

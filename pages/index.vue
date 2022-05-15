@@ -41,7 +41,7 @@
 
 <script>
 import sortOn from 'sort-on'
-
+import sanity from '@/sanity.js'
 import TerminofeuLogo from '@/assets/logos/terminofeu.svg'
 
 import { generateTermsList } from '@/utils/utils.js'
@@ -51,18 +51,18 @@ export default {
   components: {
     TerminofeuLogo,
   },
-  async asyncData({ app: { i18n, $sanity } }) {
+  async asyncData({ i18n }) {
     const query = `*[_type == "entry" && status in ["approved", "validated", "in_force"]] {
       _id,
-      status,
       "terms": content.${i18n.locale}.terms[] {
                 _key,
                 designation,
-                abbreviation
+                abbreviation,
+                status
         }
     }
     `
-    const results = await $sanity.fetch(query)
+    const results = await sanity.fetch(query)
     const formattedEntries = generateTermsList(results)
     const entries = sortOn(formattedEntries, 'term')
     return {
