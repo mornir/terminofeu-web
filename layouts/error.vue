@@ -21,7 +21,7 @@
 
       <NuxtLink class="block text-center" :to="localePath({ name: 'index' })">
         <span
-          class="inline-block mb-1 text-2xl font-bold decoration-primary animate-exit text-primary-alt"
+          class="inline-block mb-1 text-2xl font-bold  decoration-primary animate-exit text-primary-alt"
           >EXIT</span
         >
         <ExitSVG class="w-24 mx-auto" />
@@ -43,6 +43,9 @@ export default {
       type: Object,
       default: () => {},
     },
+  },
+  head: {
+    title: '404',
   },
 }
 </script>
