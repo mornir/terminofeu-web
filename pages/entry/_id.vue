@@ -117,17 +117,19 @@
           </p>
         </div>
 
-        <BlockContent
-          v-if="entry.content[$i18n.locale].definition"
-          :blocks="entry.content[$i18n.locale].definition"
-          class="mb-6"
-        />
+        <div class="mb-6">
+          <BlockContent
+            v-if="entry.content[$i18n.locale].definition"
+            :blocks="entry.content[$i18n.locale].definition"
+          />
+        </div>
 
-        <BlockContent
-          v-if="entry.content[$i18n.locale].note"
-          :blocks="entry.content[$i18n.locale].note"
-          class="text-base italic"
-        />
+        <div class="text-base italic">
+          <BlockContent
+            v-if="entry.content[$i18n.locale].note"
+            :blocks="entry.content[$i18n.locale].note"
+          />
+        </div>
       </section>
 
       <!-- <section v-if="entry.content[$i18n.locale].definitions" class="mt-12">
