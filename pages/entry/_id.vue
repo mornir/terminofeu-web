@@ -88,7 +88,7 @@
         </div>
 
         <div
-          class="flex items-center px-4 py-1 mb-3 text-gray-800 bg-orange-300  gap-x-2"
+          class="flex items-center px-4 py-1 mb-3 text-gray-800 bg-orange-300"
           style="width: fit-content"
         >
           <svg
