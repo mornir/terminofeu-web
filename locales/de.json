@@ -17,6 +17,10 @@
     "notice": "Anmerkungen",
     "draftDefinition": "Entwurf Definition für BSV 2026"
   },
+  "quotation": {
+    "verbatim": "Wörtlich übernommen aus",
+    "adapted": "In Anlehnung an"
+  },
   "navigation": {
     "backToIndex": "Zum Verzeichnis",
     "openEntry": "Zum Eintrag"

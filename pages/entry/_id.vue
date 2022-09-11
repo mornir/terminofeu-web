@@ -122,6 +122,22 @@
             v-if="entry.content[$i18n.locale].definition"
             :blocks="entry.content[$i18n.locale].definition"
           />
+
+          <p
+            v-if="
+              entry.content[$i18n.locale].definitionSource &&
+              entry.content[$i18n.locale].definitionSource.reference &&
+              entry.content[$i18n.locale].definitionSource.reference.title
+            "
+            class="text-sm text-right text-gray-600"
+          >
+            <span v-if="entry.content[$i18n.locale].definitionSource.type">{{
+              entry.content[$i18n.locale].definitionSource.type === 'original'
+                ? $t('quotation.verbatim')
+                : $t('quotation.adapted')
+            }}</span>
+            {{ entry.content[$i18n.locale].definitionSource.reference.title }}
+          </p>
         </div>
 
         <div class="text-base italic">
@@ -131,24 +147,6 @@
           />
         </div>
       </section>
-
-      <!-- <section v-if="entry.content[$i18n.locale].definitions" class="mt-12">
-        <Heading2 class="-mb-4">{{
-          $t('entry.thirdPartyDefinitions')
-        }}</Heading2>
-
-        <div
-          v-for="definition in entry.content[$i18n.locale].definitions"
-          :key="definition._key"
-          class="mt-6"
-        >
-          <RichText
-            :blocks="definition.definition"
-            class="text-base leading-snug"
-          />
-          <p class="mt-1 text-xs italic">{{ definition.source.title }}</p>
-        </div>
-      </section> -->
     </div>
   </div>
 </template>
@@ -170,13 +168,10 @@ export default {
       content {
       ${i18n.locale} {
         ...,
-        definitions[] {
-          ...,
-          source-> {
-            title
-          }
+        definitionSource {
+          reference->{title},
+          type
         }
-
       }
      }
     },
@@ -217,14 +212,6 @@ export default {
     return {
       title:
         this.entry.content[this.$i18n.locale]?.terms?.[0].designation ?? '',
-      /*   meta: [
-        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'My custom description',
-        },
-      ], */
     }
   },
 }
