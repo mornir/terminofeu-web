@@ -122,6 +122,22 @@
             v-if="entry.content[$i18n.locale].definition"
             :blocks="entry.content[$i18n.locale].definition"
           />
+
+          <p
+            v-if="
+              entry.content[$i18n.locale].definitionSource &&
+              entry.content[$i18n.locale].definitionSource.reference &&
+              entry.content[$i18n.locale].definitionSource.reference.title
+            "
+            class="text-sm text-right text-gray-600"
+          >
+            <span v-if="entry.content[$i18n.locale].definitionSource.type">{{
+              entry.content[$i18n.locale].definitionSource.type === 'original'
+                ? $t('quotation.verbatim')
+                : $t('quotation.adapted')
+            }}</span>
+            {{ entry.content[$i18n.locale].definitionSource.reference.title }}
+          </p>
         </div>
 
         <div class="text-base italic">
@@ -152,13 +168,10 @@ export default {
       content {
       ${i18n.locale} {
         ...,
-        definitions[] {
-          ...,
-          source-> {
-            title
-          }
+        definitionSource {
+          reference->{title},
+          type
         }
-
       }
      }
     },
