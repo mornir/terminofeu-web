@@ -131,24 +131,6 @@
           />
         </div>
       </section>
-
-      <!-- <section v-if="entry.content[$i18n.locale].definitions" class="mt-12">
-        <Heading2 class="-mb-4">{{
-          $t('entry.thirdPartyDefinitions')
-        }}</Heading2>
-
-        <div
-          v-for="definition in entry.content[$i18n.locale].definitions"
-          :key="definition._key"
-          class="mt-6"
-        >
-          <RichText
-            :blocks="definition.definition"
-            class="text-base leading-snug"
-          />
-          <p class="mt-1 text-xs italic">{{ definition.source.title }}</p>
-        </div>
-      </section> -->
     </div>
   </div>
 </template>
@@ -217,14 +199,6 @@ export default {
     return {
       title:
         this.entry.content[this.$i18n.locale]?.terms?.[0].designation ?? '',
-      /*   meta: [
-        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'My custom description',
-        },
-      ], */
     }
   },
 }
