@@ -164,7 +164,7 @@
                     }}
                   </p>
                   <p class="text-xs">
-                    Stand:
+                    {{ $t('quotation.asOf') }}
                     {{
                       new Intl.DateTimeFormat('fr-CH').format(
                         new Date(
@@ -187,7 +187,7 @@
                         "
                         class="underline"
                         target="_blank"
-                        >Quelle ansehen
+                        >{{ $t('quotation.link') }}
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 20 20"
