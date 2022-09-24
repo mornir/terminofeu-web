@@ -66,14 +66,32 @@
           ></NuxtLink>
         </nav>
       </header>
+
       <section class="mt-8">
         <div class="mb-4 md:mb-6">
-          <Heading1 v-if="entry.content[$i18n.locale].terms">
-            {{ entry.content[$i18n.locale].terms[0].designation }}
-            <span v-if="entry.content[$i18n.locale].terms[0].abbreviation"
-              >({{ entry.content[$i18n.locale].terms[0].abbreviation }})</span
+          <div class="flex items-baseline gap-x-2">
+            <h1
+              v-if="entry.content[$i18n.locale].terms"
+              class="relative text-2xl font-bold leading-normal sm:pl-2 sm:-ml-4 sm:border-l-8 sm:border-primary lg:text-3xl"
             >
-          </Heading1>
+              {{ entry.content[$i18n.locale].terms[0].designation }}
+              <span v-if="entry.content[$i18n.locale].terms[0].abbreviation"
+                >({{ entry.content[$i18n.locale].terms[0].abbreviation }})</span
+              >
+            </h1>
+            <SourceIcon
+              v-if="
+                entry.content[$i18n.locale].terms[0].source &&
+                entry.content[$i18n.locale].terms[0].source.title
+              "
+              :title="entry.content[$i18n.locale].terms[0].source.title"
+              :long-title="
+                entry.content[$i18n.locale].terms[0].source.longTitle
+              "
+              :date="entry.content[$i18n.locale].terms[0].source.date"
+              :url="entry.content[$i18n.locale].terms[0].source.url"
+            />
+          </div>
 
           <ul>
             <li
@@ -83,6 +101,14 @@
             >
               {{ term.designation }}
               <span v-if="term.abbreviation">({{ term.abbreviation }})</span>
+              <SourceIcon
+                v-if="term.source && term.source.title"
+                :title="term.source.title"
+                :long-title="term.source.longTitle"
+                :date="term.source.date"
+                :url="term.source.url"
+                class="inline-block text-base"
+              />
             </li>
           </ul>
         </div>
@@ -123,99 +149,50 @@
             :blocks="entry.content[$i18n.locale].definition"
           />
 
-          <p
+          <SourceText
             v-if="
               entry.content[$i18n.locale].definitionSource &&
               entry.content[$i18n.locale].definitionSource.reference &&
               entry.content[$i18n.locale].definitionSource.reference.title
             "
-            class="flex justify-end text-sm text-gray-600"
-          >
-            <span
-              v-if="
-                entry.content[$i18n.locale].definitionSource.type &&
-                entry.content[$i18n.locale].definitionSource.type === 'after'
-              "
-              class="inline-block mr-1"
-              >{{ $t('quotation.adapted') }}
-            </span>
-
-            <VDropdown>
-              <!-- This will be the popover reference (for the events and position) -->
-              <button class="underline">
-                {{
-                  entry.content[$i18n.locale].definitionSource.reference.title
-                }}
-              </button>
-
-              <!-- This will be the content of the popover -->
-              <template #popper>
-                <div class="max-w-sm p-2">
-                  <p
-                    v-if="
-                      entry.content[$i18n.locale].definitionSource.reference
-                        .longTitle
-                    "
-                    class="mb-1 text-sm"
-                  >
-                    {{
-                      entry.content[$i18n.locale].definitionSource.reference
-                        .longTitle
-                    }}
-                  </p>
-                  <p class="text-xs">
-                    Stand:
-                    {{
-                      new Intl.DateTimeFormat('fr-CH').format(
-                        new Date(
-                          entry.content[
-                            $i18n.locale
-                          ].definitionSource.reference.date
-                        )
-                      )
-                    }}
-                    <span
-                      v-if="
-                        entry.content[$i18n.locale].definitionSource.reference
-                          .url
-                      "
-                      >|
-                      <a
-                        :href="
-                          entry.content[$i18n.locale].definitionSource.reference
-                            .url
-                        "
-                        class="underline"
-                        target="_blank"
-                        >Quelle ansehen
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          class="inline-block w-4 h-4"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h5a.75.75 0 010 1.5h-5z"
-                            clip-rule="evenodd"
-                          />
-                          <path
-                            fill-rule="evenodd"
-                            d="M6.194 12.753a.75.75 0 001.06.053L16.5 4.44v2.81a.75.75 0 001.5 0v-4.5a.75.75 0 00-.75-.75h-4.5a.75.75 0 000 1.5h2.553l-9.056 8.194a.75.75 0 00-.053 1.06z"
-                            clip-rule="evenodd"
-                          />
-                        </svg> </a
-                    ></span>
-                  </p>
-                </div>
-              </template>
-            </VDropdown>
-          </p>
+            :title="
+              entry.content[$i18n.locale].definitionSource.reference.title
+            "
+            :after="
+              entry.content[$i18n.locale].definitionSource.type &&
+              entry.content[$i18n.locale].definitionSource.type === 'after'
+            "
+            :url="entry.content[$i18n.locale].definitionSource.reference.url"
+            :date="entry.content[$i18n.locale].definitionSource.reference.date"
+            :long-title="
+              entry.content[$i18n.locale].definitionSource.reference.longTitle
+            "
+          />
         </div>
 
-        <div class="text-base italic">
-          <BlockContent
-            v-if="entry.content[$i18n.locale].note"
-            :blocks="entry.content[$i18n.locale].note"
+        <div>
+          <div class="text-base italic">
+            <BlockContent
+              v-if="entry.content[$i18n.locale].note"
+              :blocks="entry.content[$i18n.locale].note"
+            />
+          </div>
+          <SourceText
+            v-if="
+              entry.content[$i18n.locale].notesSource &&
+              entry.content[$i18n.locale].notesSource.reference &&
+              entry.content[$i18n.locale].notesSource.reference.title
+            "
+            :title="entry.content[$i18n.locale].notesSource.reference.title"
+            :after="
+              entry.content[$i18n.locale].notesSource.type &&
+              entry.content[$i18n.locale].notesSource.type === 'after'
+            "
+            :url="entry.content[$i18n.locale].notesSource.reference.url"
+            :date="entry.content[$i18n.locale].notesSource.reference.date"
+            :long-title="
+              entry.content[$i18n.locale].notesSource.reference.longTitle
+            "
           />
         </div>
       </section>
@@ -241,7 +218,15 @@ export default {
       content {
       ${i18n.locale} {
         ...,
+        terms[] {
+          ...,
+          source->
+        },
         definitionSource {
+          reference->{title, longTitle, date, url},
+          type
+        },
+        notesSource {
           reference->{title, longTitle, date, url},
           type
         }

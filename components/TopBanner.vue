@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'Banner',
+  name: 'TopBanner',
 }
 </script>

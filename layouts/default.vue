@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-gray-200">
     <div class="max-w-2xl mx-auto font-sans bg-white">
-      <Banner>{{ $t('stickyBanner') }}</Banner>
+      <TopBanner>{{ $t('stickyBanner') }}</TopBanner>
       <TheHeader />
       <Nuxt class="py-6" />
       <TheFooter />

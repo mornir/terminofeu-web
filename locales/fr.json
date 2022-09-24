@@ -18,7 +18,9 @@
     "draftDefinition": "Ébauche de définition pour les PPI 2026"
   },
   "quotation": {
-    "adapted": "Inspiré de"
+    "adapted": "Inspiré de",
+    "asOf": "état:",
+    "link": "consulter la source"
   },
   "navigation": {
     "backToIndex": "Retour à l'index",
