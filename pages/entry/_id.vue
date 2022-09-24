@@ -191,7 +191,7 @@
             :url="entry.content[$i18n.locale].notesSource.reference.url"
             :date="entry.content[$i18n.locale].notesSource.reference.date"
             :long-title="
-              entry.content[$i18n.locale].definitionSource.reference.longTitle
+              entry.content[$i18n.locale].notesSource.reference.longTitle
             "
           />
         </div>
