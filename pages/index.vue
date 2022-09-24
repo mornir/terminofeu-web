@@ -16,7 +16,7 @@
         <ul v-if="hasMatches" data-cy="terms-list">
           <li
             v-for="entry in entries"
-            :key="entry.key"
+            :key="entry._key"
             class="flex items-center mb-2 gap-x-2"
           >
             <NuxtLink
