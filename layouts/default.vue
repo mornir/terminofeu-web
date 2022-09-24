@@ -16,6 +16,10 @@ export default {
 </script>
 
 <style lang="postcss">
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   font-size: 18px;
 }
