@@ -218,7 +218,7 @@ export default {
       content {
       ${i18n.locale} {
         ...,
-        terms[status == 'main' || status == 'variant'] {
+        terms[status != 'avoid' && status != 'to_be_defined'] {
           ...,
           source->
         },
