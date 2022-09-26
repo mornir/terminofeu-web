@@ -79,18 +79,6 @@
                 >({{ entry.content[$i18n.locale].terms[0].abbreviation }})</span
               >
             </h1>
-            <SourceIcon
-              v-if="
-                entry.content[$i18n.locale].terms[0].source &&
-                entry.content[$i18n.locale].terms[0].source.title
-              "
-              :title="entry.content[$i18n.locale].terms[0].source.title"
-              :long-title="
-                entry.content[$i18n.locale].terms[0].source.longTitle
-              "
-              :date="entry.content[$i18n.locale].terms[0].source.date"
-              :url="entry.content[$i18n.locale].terms[0].source.url"
-            />
           </div>
 
           <ul>
@@ -101,14 +89,6 @@
             >
               {{ term.designation }}
               <span v-if="term.abbreviation">({{ term.abbreviation }})</span>
-              <SourceIcon
-                v-if="term.source && term.source.title"
-                :title="term.source.title"
-                :long-title="term.source.longTitle"
-                :date="term.source.date"
-                :url="term.source.url"
-                class="inline-block text-base"
-              />
             </li>
           </ul>
         </div>
