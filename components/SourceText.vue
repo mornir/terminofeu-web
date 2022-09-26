@@ -1,9 +1,7 @@
 <template>
   <p class="flex justify-end text-sm text-gray-600">
     <span class="mr-1">{{ $t('quotation.source') }}</span>
-    <span v-if="after" class="inline-block mr-1"
-      >{{ $t('quotation.adapted') }}
-    </span>
+    <span v-if="after" class="mr-1">{{ $t('quotation.adapted') }} </span>
 
     <VDropdown>
       <button class="underline">
