@@ -18,10 +18,11 @@
     "draftDefinition": "Entwurf Definition für BSV 2026"
   },
   "quotation": {
-    "adapted": "Angepasst aus",
+    "adapted": "angepasst aus",
     "asOf": "Stand:",
     "link": "Quelle ansehen",
-    "show": "Quelle anzeigen"
+    "show": "Quelle anzeigen",
+    "source": "Quelle:"
   },
   "navigation": {
     "backToIndex": "Zum Verzeichnis",
