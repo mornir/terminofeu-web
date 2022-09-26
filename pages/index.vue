@@ -23,7 +23,7 @@
               :to="
                 localePath({ name: 'entry-id', params: { id: entry.entry_id } })
               "
-              class="font-semibold hover:text-primary"
+              class="font-semibold transition-colors duration-200 hover:text-primary"
               >{{ entry.term }}
             </NuxtLink>
             <!--    <span
