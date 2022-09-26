@@ -1,7 +1,9 @@
 <template>
   <div>
     <VDropdown>
-      <button class="underline">
+      <button
+        class="underline transition-colors duration-200 hover:text-primary"
+      >
         <span class="sr-only">{{ $t('quotation.show') }}</span>
         <svg
           stroke="currentColor"
