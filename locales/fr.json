@@ -20,7 +20,8 @@
   "quotation": {
     "adapted": "Inspiré de",
     "asOf": "état:",
-    "link": "consulter la source"
+    "link": "consulter la source",
+    "show": "afficher la source"
   },
   "navigation": {
     "backToIndex": "Retour à l'index",

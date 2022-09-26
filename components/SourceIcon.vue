@@ -2,6 +2,7 @@
   <div>
     <VDropdown>
       <button class="underline">
+        <span class="sr-only">{{ $t('quotation.show') }}</span>
         <svg
           stroke="currentColor"
           fill="currentColor"

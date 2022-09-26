@@ -20,7 +20,8 @@
   "quotation": {
     "adapted": "Angepasst aus",
     "asOf": "Stand:",
-    "link": "Quelle ansehen"
+    "link": "Quelle ansehen",
+    "show": "Quelle anzeigen"
   },
   "navigation": {
     "backToIndex": "Zum Verzeichnis",
