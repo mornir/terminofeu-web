@@ -7,7 +7,7 @@
   "notFound": "Page introuvable",
   "notFoundMessage": "La page recherchée n'existe pas ou plus. Cliquez sur EXIT pour revenir à l'index.",
   "errorMessage": "Hoppla! Da ist etwas schief gelaufen...",
-  "stickyBanner": "Le contenu de ce site est en cours d'élaboration.",
+  "stickyBanner": "Attention: contenu non définitif et susceptible d'être encore modifié",
   "entry": {
     "relatedTerms": "Termes apparentés",
     "alternativeTerms": "Variantes",
