@@ -123,10 +123,11 @@
           </p>
         </div>
 
-        <div class="mb-6">
+        <div class="mb-6 blockcontent">
           <BlockContent
             v-if="entry.content[$i18n.locale].definition"
             :blocks="entry.content[$i18n.locale].definition"
+            :serializers="serializers"
           />
 
           <SourceText
@@ -151,10 +152,11 @@
         </div>
 
         <div>
-          <div class="text-base italic">
+          <div class="text-base italic blockcontent">
             <BlockContent
               v-if="entry.content[$i18n.locale].note"
               :blocks="entry.content[$i18n.locale].note"
+              :serializers="serializers"
             />
           </div>
           <SourceText
@@ -185,6 +187,7 @@ import 'floating-vue/dist/style.css'
 import sortOn from 'sort-on'
 import BlockContent from 'sanity-blocks-vue-component'
 import sanity from '@/sanity.js'
+import upperCase from '@/components/serializers/upperCase'
 
 export default {
   name: 'EntryDetails',
@@ -246,6 +249,15 @@ export default {
       nextEntry,
     }
   },
+  data() {
+    return {
+      serializers: {
+        marks: {
+          sup: upperCase,
+        },
+      },
+    }
+  },
   head() {
     return {
       title:
@@ -254,3 +266,15 @@ export default {
   },
 }
 </script>
+
+<style>
+.blockcontent ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+</style>
