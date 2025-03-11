@@ -6,18 +6,6 @@
           :to="'/' + $i18n.locale"
           class="inline-block mb-6 text-base font-semibold underline"
         >
-          <!--  <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            class="inline-block h-6 stroke-current stroke-2 text-primary"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M10 19l-7-7m0 0l7-7m-7 7h18"
-            />
-          </svg> -->
           {{ $t('navigation.backToIndex') }}</NuxtLink
         >
 
@@ -81,11 +69,11 @@
             </h1>
           </div>
 
-          <ul>
+          <ul class="c-first-hidden">
             <li
               v-for="term in entry.content[$i18n.locale].terms"
               :key="term._key"
-              class="text-xl font-semibold lg:text-2xl first:hidden"
+              class="text-xl font-semibold lg:text-2xl"
             >
               {{ term.designation }}
               <span v-if="term.abbreviation">({{ term.abbreviation }})</span>
@@ -276,5 +264,9 @@ export default {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 40px;
+}
+
+.c-first-hidden > li:first-child {
+  display: none;
 }
 </style>
