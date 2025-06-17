@@ -46,13 +46,11 @@ export default {
     this.fuse = new Fuse(this.searchArray, {
       keys: ['term'],
       includeScore: true,
+      ignoreLocation: true,
+      threshold: 0.2,
     })
     this.localArray = this.searchArray
   },
-  /*   mounted() {
-    const searchBox = document.getElementById('search-box')
-    searchBox.focus()
-  }, */
   methods: {
     search(query) {
       if (!query.trim()) {
@@ -60,10 +58,7 @@ export default {
         return
       }
 
-      const results = this.fuse
-        .search(query)
-        .filter((entry) => entry.score < 0.33)
-        .map((entry) => entry.item)
+      const results = this.fuse.search(query).map((entry) => entry.item)
 
       this.$emit('searched', results)
     },
