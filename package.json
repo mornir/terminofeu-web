@@ -6,10 +6,7 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint": "yarn lint:js",
-    "test": "cypress open"
+    "generate": "nuxt generate"
   },
   "dependencies": {
     "core-js": "^3.21.1",
@@ -28,7 +25,6 @@
     "@nuxtjs/eslint-module": "^3.1.0",
     "@nuxtjs/google-fonts": "^1.2.0",
     "@nuxtjs/tailwindcss": "^4.0.2",
-    "cypress": "^9.5.3",
     "eslint": "^8.13.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-chai-friendly": "^0.7.2",
