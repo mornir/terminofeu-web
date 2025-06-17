@@ -1,0 +1,8 @@
+[build]
+  command = "pnpm run generate"
+  publish = "dist"
+
+[dev]
+  command = "pnpm run dev"
+
+NETLIFY_USE_PNPM=true
