@@ -45,9 +45,8 @@ export default {
   created() {
     this.fuse = new Fuse(this.searchArray, {
       keys: ['term'],
-      includeScore: true,
       ignoreLocation: true,
-      threshold: 0.2,
+      threshold: 0.1,
     })
     this.localArray = this.searchArray
   },
