@@ -4,7 +4,6 @@
       <TopBanner>{{ $t('stickyBanner') }}</TopBanner>
       <TheHeader />
       <Nuxt class="py-6" />
-      <TheFooter />
     </div>
   </div>
 </template>

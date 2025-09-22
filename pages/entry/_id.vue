@@ -176,6 +176,7 @@ import sortOn from 'sort-on'
 import BlockContent from 'sanity-blocks-vue-component'
 import sanity from '@/sanity.js'
 import upperCase from '@/components/serializers/upperCase'
+import linkToEntry from '~/components/serializers/linkToEntry'
 
 export default {
   name: 'EntryDetails',
@@ -242,6 +243,7 @@ export default {
       serializers: {
         marks: {
           sup: upperCase,
+          linkToEntry,
         },
       },
     }
