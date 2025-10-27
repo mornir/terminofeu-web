@@ -139,31 +139,23 @@
           />
         </div>
 
-        <div>
-          <div class="text-base italic blockcontent">
+        <div v-if="entry.content[$i18n.locale].note" class="mt-6">
+          <h2 class="text-gray-600">Anmerkungen</h2>
+          <div class="text-base blockcontent">
             <BlockContent
-              v-if="entry.content[$i18n.locale].note"
               :blocks="entry.content[$i18n.locale].note"
               :serializers="serializers"
             />
           </div>
-          <SourceText
-            v-if="
-              entry.content[$i18n.locale].notesSource &&
-              entry.content[$i18n.locale].notesSource.reference &&
-              entry.content[$i18n.locale].notesSource.reference.title
-            "
-            :title="entry.content[$i18n.locale].notesSource.reference.title"
-            :after="
-              entry.content[$i18n.locale].notesSource.type &&
-              entry.content[$i18n.locale].notesSource.type === 'after'
-            "
-            :url="entry.content[$i18n.locale].notesSource.reference.url"
-            :date="entry.content[$i18n.locale].notesSource.reference.date"
-            :long-title="
-              entry.content[$i18n.locale].notesSource.reference.longTitle
-            "
-          />
+        </div>
+        <div v-if="entry.content[$i18n.locale].examples" class="mt-8">
+          <h2 class="text-gray-600">Beispiele</h2>
+          <div class="text-base blockcontent">
+            <BlockContent
+              :blocks="entry.content[$i18n.locale].examples"
+              :serializers="serializers"
+            />
+          </div>
         </div>
       </section>
     </div>
@@ -265,7 +257,22 @@ export default {
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  padding-inline-start: 40px;
+  padding-inline-start: 20px;
+  margin-top: 0;
+}
+.blockcontent ol {
+  display: block;
+  list-style-type: decimal;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 20px;
+  margin-top: 0.2em;
+}
+
+.blockcontent li {
+  padding: 0.2rem 0;
 }
 
 .c-first-hidden > li:first-child {
