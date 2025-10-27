@@ -7,7 +7,7 @@
   "notFound": "Page introuvable",
   "notFoundMessage": "La page recherchée n'existe pas ou plus. Cliquez sur EXIT pour revenir à l'index.",
   "errorMessage": "Hoppla! Da ist etwas schief gelaufen...",
-  "stickyBanner": "Attention: contenu non définitif et susceptible d'être encore modifié",
+  "stickyBanner": "Contenu non définitif et susceptible d'être encore modifié",
   "entry": {
     "relatedTerms": "Termes apparentés",
     "alternativeTerms": "Variantes",
@@ -15,6 +15,7 @@
     "source": "Source",
     "noSource": "Aucune source",
     "notice": "Remarques",
+    "examples": "Exemples",
     "draftDefinition": "Ébauche de définition pour les PPI 2026"
   },
   "quotation": {
