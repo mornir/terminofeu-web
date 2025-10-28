@@ -44,7 +44,7 @@ import sortOn from 'sort-on'
 import sanity from '@/sanity.js'
 import TerminofeuLogo from '@/assets/logos/terminofeu.svg'
 
-import { generateTermsList } from '@/utils/utils.js'
+import { generateTermsList, removeDuplicates } from '@/utils/utils.js'
 
 export default {
   name: 'Home',
@@ -63,7 +63,7 @@ export default {
     }
     `
     const results = await sanity.fetch(query)
-    const formattedEntries = generateTermsList(results)
+    const formattedEntries = removeDuplicates(generateTermsList(results))
     const entries = sortOn(formattedEntries, 'term')
     return {
       entries,
